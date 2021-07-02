@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: nt_tile_end
+  m_Name: nt_tile_fog
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 6771782418413713636, guid: 208ed68ef6fd7cf4db4c7367995afeeb,
     type: 3}

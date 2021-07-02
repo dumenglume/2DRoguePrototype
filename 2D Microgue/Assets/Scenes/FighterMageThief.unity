@@ -539,10 +539,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 165510420}
-  tilePrefabs:
-  - {fileID: 11400000, guid: 73cac5cfb5ea7544baa5ce695dd2a544, type: 2}
+  tiles:
+  - {fileID: 1841078170806158893, guid: b0a82fcdd35939e40b8e93d67006eee7, type: 3}
+  - {fileID: 8215103032452910515, guid: cb3a8e0f18ff72f48a8d00d30cc98e24, type: 3}
+  - {fileID: -6464080488165145091, guid: d46965e6fc486294e8eb6d9c4b919d1a, type: 3}
+  - {fileID: 4979773719835380661, guid: 7df11b5996948e549b225a0d944abc9c, type: 3}
+  - {fileID: 3843454459787352405, guid: 9c93e34767d77064ca169c4e502f0209, type: 3}
+  - {fileID: -8937327768239280171, guid: cc9d7f60c6c41d14487b5fa6fff2610e, type: 3}
+  - {fileID: 8318652505015812979, guid: f0f0d39244023d44c8cc0c484879b9da, type: 3}
+  tileTypes: []
   worldWidth: 18
   worldHeight: 12
+  _Tiles: []
 --- !u!4 &871875351
 Transform:
   m_ObjectHideFlags: 0
