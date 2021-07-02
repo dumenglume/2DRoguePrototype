@@ -6,9 +6,5 @@ using System;
 public class _ExitTile : _Tile, ITrigerrable
 {
     public static event Action<Vector3Int> ExitTileTriggered;
-
-    public void Trigger()
-    {
-        ExitTileTriggered?.Invoke(Vector3Int.RoundToInt(coordinate));
-    }
+    public void Trigger() => ExitTileTriggered?.Invoke(Vector3Int.RoundToInt(position));
 }

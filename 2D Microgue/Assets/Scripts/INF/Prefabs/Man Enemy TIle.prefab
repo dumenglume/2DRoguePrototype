@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2635806745220902652}
   - component: {fileID: 1841078170806158893}
   m_Layer: 0
-  m_Name: Enemy Tile
+  m_Name: Man Enemy TIle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,5 +43,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2610566dfbf95bd4aac415e232ef1d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <position>k__BackingField: {x: 0, y: 0, z: 0}
   tileBase: {fileID: 11400000, guid: 51788a7643bf3de4ea6a619092ebdc0c, type: 2}
   <tileType>k__BackingField: Enemy
+  initialTileStatus:
+    visited: 0
+    walkable: 1
+    interactive: 1
+  currentTileStatus:
+    visited: 0
+    walkable: 0
+    interactive: 0

@@ -43,5 +43,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fca39951b105e934ca2237257025b223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <position>k__BackingField: {x: 0, y: 0, z: 0}
   tileBase: {fileID: 11400000, guid: d63b72216967fda4d95ef8b7c4acb29e, type: 2}
   <tileType>k__BackingField: Item
+  initialTileStatus:
+    visited: 0
+    walkable: 1
+    interactive: 1
+  currentTileStatus:
+    visited: 0
+    walkable: 0
+    interactive: 0

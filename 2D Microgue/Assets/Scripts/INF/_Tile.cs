@@ -9,41 +9,27 @@ public class _Tile : MonoBehaviour
 {
 
     #region Variables =============================================================================================================================================
-    public Vector3Int coordinate {get; protected set;}
+    [field: SerializeField, DisplayOnly] public Vector3Int position {get; protected set;}
     public Tilemap tilemap  {get; protected set;}
-    // public TileBase tileBase {get; protected set;}
-    public GameObject gameObjectTarget {get; protected set;}
     public TileBase tileBase;
+    [field: SerializeField] public string tileType {get; private set;}
+    [SerializeField] private TileStatus initialTileStatus;     
+    [DisplayOnly] public TileStatus currentTileStatus;   
 
-    [field: SerializeField]
-    public string tileType {get; private set;}
-    
-    public TileState tileState;        
     #endregion Variables =============================================================================================================================================
 
-    protected void Awake() {
-        SetState(true, true);
-    }
-
+    void Awake() => currentTileStatus = initialTileStatus;
     public void SetProperties(Vector3Int coordinate, Tilemap tilemap)
     {
-        this.coordinate = coordinate;
+        this.position = coordinate;
         this.tilemap  = tilemap;
     }
-
-    protected virtual void SetState( bool interactive, bool walkable ) {
-        tileState.interactive = interactive;
-        tileState.walkable = walkable;
-    }
-
-    public void Initialize()
-    {
-        tilemap.SetTile(coordinate, tileBase);
-    }
+ 
+    public void Initialize() =>  tilemap.SetTile(position, tileBase);
 }
 
 [System.Serializable]
-public struct TileState
+public struct TileStatus
 {
     public bool visited; 
     public bool walkable;

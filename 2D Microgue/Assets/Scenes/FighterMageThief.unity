@@ -546,8 +546,8 @@ MonoBehaviour:
   - {fileID: 4979773719835380661, guid: 7df11b5996948e549b225a0d944abc9c, type: 3}
   - {fileID: 3843454459787352405, guid: 9c93e34767d77064ca169c4e502f0209, type: 3}
   - {fileID: -8937327768239280171, guid: cc9d7f60c6c41d14487b5fa6fff2610e, type: 3}
-  - {fileID: 8318652505015812979, guid: f0f0d39244023d44c8cc0c484879b9da, type: 3}
   tileTypes: []
+  freespaces: []
   worldWidth: 18
   worldHeight: 12
   _Tiles: []

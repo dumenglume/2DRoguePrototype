@@ -8,22 +8,20 @@ namespace FMT
 {
     public class DungeonGenerator : MonoBehaviour
     {
-        // Tile/Tilemap references
-        [SerializeField] Tilemap tilemap;
-        [SerializeField] _Tile[] tiles;
-        [SerializeField] [DisplayOnly] private string[] tileTypes;
-        [DisplayOnly] [SerializeField] private List<_Tile> freespaces;
 
-        // Map will include 16 x 10
+        #region Variables ===============================================================================================================
         [SerializeField] int worldWidth  = 18;
         [SerializeField] int worldHeight = 12;
 
+        // Tile/Tilemap references
+        [SerializeField] Tilemap tilemap;
+        [SerializeField] _Tile[] tilePrefabs;
+        [DisplayOnly] public string[] tileTypes;
+        [DisplayOnly] public List<_Tile> tiles = new List<_Tile>();
+        public _Tile[,] tileGrid;
         public static DungeonGenerator instance;
         public static DungeonGenerator Instance => instance;
-
-        public _Tile[,] tilesCollection;
-
-        [DisplayOnly] [SerializeField] private List<_Tile> _Tiles = new List<_Tile>();
+        #endregion Variables ===============================================================================================================
 
         void Awake()
         {
@@ -33,21 +31,20 @@ namespace FMT
                 instance = this;
 
             CreateTileTypes();
-            freespaces = new List<_Tile>();
         }
 
         private void CreateTileTypes()
         {
-            tileTypes = new string[tiles.Length];
-            for (int i = 0; i < tiles.Length; i++)
+            tileTypes = new string[tilePrefabs.Length];
+            for (int i = 0; i < tilePrefabs.Length; i++)
             {
-                tileTypes[i] = tiles[i].tileType;
+                tileTypes[i] = tilePrefabs[i].tileType;
             }
         }
 
         void Start()
         {
-            tilesCollection = new _Tile[worldWidth, worldHeight];
+            tileGrid = new _Tile[worldWidth, worldHeight];
             Transform tilesContainer = CreateContainer("Tiles");
 
             // Generate grid data
@@ -56,35 +53,18 @@ namespace FMT
                 for (int y = 0; y < worldHeight; y++)
                 {
                     Vector3Int thisPosition = new Vector3Int(x, y, 0);
-                    
-                    _Tile thisTile = Instantiate(tiles[UnityEngine.Random.Range(0, tiles.Length)], thisPosition, Quaternion.identity, tilesContainer) as _Tile;
+                    _Tile thisTile = Instantiate(tilePrefabs[UnityEngine.Random.Range(0, tilePrefabs.Length)], thisPosition, Quaternion.identity, tilesContainer) as _Tile;
                     thisTile.SetProperties(thisPosition, tilemap);
-
-                    if (thisTile.tileState.walkable)
-                    {
-                        Debug.Log("Tile Type:" + thisTile.tileType);
-                        freespaces.Add(thisTile);
-                    }
-
-                    _Tiles.Add(thisTile);
-                    tilesCollection[x, y] = thisTile;
+                    tiles.Add(thisTile);
+                    tileGrid[x, y] = thisTile;
                 }
             }
 
             // Draw grid
-            for (int i = 0; i < _Tiles.Count; i++)
+            for (int i = 0; i < tiles.Count; i++)
             {
-                _Tiles[i].Initialize();
+                tiles[i].Initialize();
             }
-
-            Vector2Int r = new Vector2Int(UnityEngine.Random.Range(0, worldWidth), UnityEngine.Random.Range(0, worldHeight));
-
-            _Tile t = GetTile(r);
-
-            Debug.Log(t.tileState.visited);
-            Debug.Log(t.tileState.walkable);
-            Debug.Log(t.tileState.interactive);
-            Debug.Log(t.coordinate);
         }
 
         private Transform CreateContainer(string name)
@@ -95,7 +75,7 @@ namespace FMT
         }
 
         public _Tile GetTile (Vector2Int coordinates) {
-            return tilesCollection[coordinates.x, coordinates.y];
+            return tileGrid[coordinates.x, coordinates.y];
         }
     }
 }
