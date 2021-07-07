@@ -48,7 +48,6 @@ public class TetrisBlockContainer : MonoBehaviour
                     GenerateBlock(x, y);
                 }
 
-                // if (x != 0 || y != 0)
                 else
                 {
                     float blockSpawnRoll = Random.Range(0.0f, 1.0f);
@@ -186,7 +185,7 @@ public class TetrisBlockContainer : MonoBehaviour
             AddBlocksToGrid();
             OnPlacementComplete();
 
-            TetrisGameManager.Instance.IncreaseStressLevel(overflowCount);
+            TetrisGameManager.Instance.IncreaseOverflowCount(overflowCount);
         }
     }
 

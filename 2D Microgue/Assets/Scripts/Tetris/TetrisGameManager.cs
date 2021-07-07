@@ -8,9 +8,9 @@ public class TetrisGameManager : MonoBehaviour
 
     [SerializeField] TextMesh textMesh;
 
-    [SerializeField] int stressLevel = 0;
-    [SerializeField] int maxStressLevel = 10;
-    public int StressLevel { get { return stressLevel; } set { stressLevel = value; } }
+    [SerializeField] int overflowCount = 0;
+    [SerializeField] int maxOverflowCount = 10;
+    public int OverflowClound { get { return overflowCount; } set { overflowCount = value; } }
 
     List<GameObject> activeBlocks = new List<GameObject>();
 
@@ -22,39 +22,29 @@ public class TetrisGameManager : MonoBehaviour
             instance = this;
     }
 
-    void OnEnable()
-    {
-
-    }
-
-    void OnDisable()
-    {
-        
-    }
-
     void Start()
     {
-        UpdateStressLevelText();
+        UpdateOverflowText();
     }
 
-    public void IncreaseStressLevel(int _amount)
+    public void IncreaseOverflowCount(int _amount)
     {
-        stressLevel += _amount;
+        overflowCount += _amount;
 
-        UpdateStressLevelText();
-        CheckStressLevel();
+        UpdateOverflowText();
+        CheckOverflowCount();
     }
 
-    void CheckStressLevel()
+    void CheckOverflowCount()
     {
-        if (stressLevel == maxStressLevel)
+        if (overflowCount == maxOverflowCount)
         {
             Debug.Log("Stress level maxed.");
         }
     }
 
-    void UpdateStressLevelText()
+    void UpdateOverflowText()
     {
-        textMesh.text = stressLevel + "/" + maxStressLevel;
+        textMesh.text = overflowCount + "/" + maxOverflowCount;
     }
 }

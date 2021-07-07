@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace HB
+namespace FMT
 {
-public class HBEntityHealth : MonoBehaviour
+public class EntityHealth : MonoBehaviour
 {
     public static event Action HealthChanged;
     public static event Action EntityDied;

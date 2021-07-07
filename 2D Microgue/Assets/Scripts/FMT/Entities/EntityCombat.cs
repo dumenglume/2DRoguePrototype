@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace HB
+namespace FMT
 {
-public class HBEntityCombat : MonoBehaviour
+public class EntityCombat : MonoBehaviour
 {
     [SerializeField] protected float bumpDuration = 0.0f;
     public float BumpDuration => bumpDuration;

@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &5460920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +168,7 @@ Transform:
   m_Children:
   - {fileID: 1110286193}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &165510417
 GameObject:
@@ -429,7 +429,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &847627828
 GameObject:
@@ -518,9 +518,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 871875351}
+  - component: {fileID: 871875354}
   - component: {fileID: 871875350}
+  - component: {fileID: 871875353}
+  - component: {fileID: 871875352}
   m_Layer: 0
-  m_Name: FMT Dungeon Generator
+  m_Name: New Dungeon Generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -538,19 +541,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b95a04f38e1930c43ae3bc32293bf3cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemap: {fileID: 165510420}
-  tiles:
-  - {fileID: 1841078170806158893, guid: b0a82fcdd35939e40b8e93d67006eee7, type: 3}
-  - {fileID: 8215103032452910515, guid: cb3a8e0f18ff72f48a8d00d30cc98e24, type: 3}
-  - {fileID: -6464080488165145091, guid: d46965e6fc486294e8eb6d9c4b919d1a, type: 3}
-  - {fileID: 4979773719835380661, guid: 7df11b5996948e549b225a0d944abc9c, type: 3}
-  - {fileID: 3843454459787352405, guid: 9c93e34767d77064ca169c4e502f0209, type: 3}
-  - {fileID: -8937327768239280171, guid: cc9d7f60c6c41d14487b5fa6fff2610e, type: 3}
-  tileTypes: []
-  freespaces: []
   worldWidth: 18
   worldHeight: 12
-  _Tiles: []
+  tilemap: {fileID: 165510420}
+  floorTileBase: {fileID: 11400000, guid: 77bb533f79956da498897347d43a04dd, type: 2}
+  wallTileBase: {fileID: 11400000, guid: f0d2fc604315cbd44b5aa18656ed9ae5, type: 2}
+  startTileBase: {fileID: 11400000, guid: bef25b068f27f4544bfa29fd9fee0ff1, type: 2}
+  exitTileBase: {fileID: 11400000, guid: 2aa8e9e8cf505ae46996d1be3261c415, type: 2}
 --- !u!4 &871875351
 Transform:
   m_ObjectHideFlags: 0
@@ -563,8 +560,50 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &871875352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871875349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c2a0261e2f47034f8c004859ac52fb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &871875353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871875349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55620c539a47df54dae094c2b2db9f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 6402222025874225062, guid: 201bb6fe423eb954e94569e49e97b057,
+    type: 3}
+--- !u!114 &871875354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871875349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcd20deb78d3edb46a8b6b530f9729ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dungeonGenerator: {fileID: 871875350}
+  entitySpawner: {fileID: 871875353}
+  itemSpawner: {fileID: 871875352}
+  generationSpeed: 0
 --- !u!1 &898255251
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,7 +650,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &913303562
 GameObject:
@@ -1032,50 +1071,7 @@ Transform:
   - {fileID: 165510418}
   - {fileID: 913303563}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1511898977
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1511898979}
-  - component: {fileID: 1511898978}
-  m_Layer: 0
-  m_Name: Game Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1511898978
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1511898977}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 490080b7b9d50a446aa81b6d9e803d5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1511898979
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1511898977}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1756120186
 GameObject:
@@ -1331,7 +1327,7 @@ GameObject:
   - component: {fileID: 1921323432}
   - component: {fileID: 1921323433}
   m_Layer: 0
-  m_Name: HB Level Generator
+  m_Name: Old Dungeon Generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1371,7 +1367,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1921323432
 MonoBehaviour:
