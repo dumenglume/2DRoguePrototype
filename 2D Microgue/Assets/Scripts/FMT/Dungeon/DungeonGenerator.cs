@@ -70,7 +70,7 @@ public class DungeonGenerator : MonoBehaviour
         InitializeMap();
 
         Debug.Log("Filling map");
-        yield return Co_FloodFillMap();
+        FloodFillMap();
 
         Debug.Log("Getting random tile");
         _Tile startTile = GetRandomTile();
@@ -93,7 +93,7 @@ public class DungeonGenerator : MonoBehaviour
 
     void InitializeMap() => tileGrid = new _Tile[worldWidth, worldHeight];
 
-    IEnumerator Co_FloodFillMap()
+    void FloodFillMap()
     {
         for (int y = 0; y < worldHeight; y++)
         {
@@ -101,7 +101,6 @@ public class DungeonGenerator : MonoBehaviour
             {
                 _WallTile wallTile = new _WallTile(wallTileBase);
                 PlaceTile(x, y, wallTile);
-                if (generationSpeed > 0.0f) { yield return new WaitForSeconds(generationSpeed); }
             }
         }
     }

@@ -588,6 +588,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 6402222025874225062, guid: 201bb6fe423eb954e94569e49e97b057,
     type: 3}
+  enemyPrefabList:
+  - {fileID: 6402222025874225062, guid: 7fb2a609528309941a116b5bed13ec3f, type: 3}
+  maxEnemies: 10
 --- !u!114 &871875354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -603,6 +606,9 @@ MonoBehaviour:
   dungeonGenerator: {fileID: 871875350}
   entitySpawner: {fileID: 871875353}
   itemSpawner: {fileID: 871875352}
+  worldWidth: 18
+  worldHeight: 12
+  tilemap: {fileID: 0}
   generationSpeed: 0
 --- !u!1 &898255251
 GameObject:

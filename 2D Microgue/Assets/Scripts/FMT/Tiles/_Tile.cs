@@ -12,6 +12,7 @@ public class _Tile
     public Tilemap    tilemap   {get; protected set;}
     public TileBase   tileBase;  // {get; protected set;}
     public _Tile[] cardinalNeighbors = new _Tile[4]; // North, East, South, West
+    public GameObject gameObject;
 
     [SerializeField] bool isVisited;
     [SerializeField] bool isDeadEnd;

@@ -48,13 +48,13 @@ public class Player : Entity
         inputX = playerInput.InputX;
         inputY = playerInput.InputY;
 
-        Vector2 inputDirection = new Vector2(inputX, inputY);
+        Vector3 inputDirection = new Vector3(inputX, inputY, 0);
 
         bool inputIsDetected = inputDirection.x != 0 || inputDirection.y != 0;
 
         if (inputIsDetected && !entityMovement.IsMoving && !entityCombat.IsInCombat)
         {
-            entityMovement.AttemptToMove(x, y, (int) inputDirection.x, (int) inputDirection.y, SetEntityPosition);
+            entityMovement.AttemptToMove(x, y, (int) inputDirection.x, (int) inputDirection.y, Vector3Int.RoundToInt(inputDirection), SetEntityPosition);
         }
     }
 }

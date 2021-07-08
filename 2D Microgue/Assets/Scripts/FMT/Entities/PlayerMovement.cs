@@ -18,39 +18,19 @@ public class PlayerMovement : EntityMovement
 
     void Start() { tileGrid = DungeonManager.Instance.tileGrid; Debug.Log(tileGrid.Length); }
 
-    /*
-    public override void AttemptToMoveOld(Vector3 _direction)
-    {
-        if (dungeonTileDictionary == null) { throw new System.Exception("No tile dictionary exists."); }
-
-        Vector3 currentPosition     = transform.position;
-        Vector3 destinationPosition = currentPosition + _direction;
-
-        // if (dungeonTileDictionary.TryGetValue(destinationPosition, out HBTile destinationTile)) // ! Delete if no longer needed
-        if (dungeonTileDictionary.ContainsKey(destinationPosition))
-        {
-            var destinationTile = dungeonTileDictionary[destinationPosition];
-            // if (destinationTile.IsWalkable) { MoveToTile(destinationTile); return; } // ! Delete if no longer needed
-            if (destinationTile is HBTileFloor) { MoveToTile(destinationTile); return; }
-
-            // else if (destinationTile.IsEnemy) // ! Delete if no longer needed
-            else if (destinationTile is HBTileEnemy)
-            {
-                GameObject thisEnemyObject = HBEntitySpawner.EntityDictionary[Vector3Int.RoundToInt(destinationPosition)];
-                if (thisEnemyObject == null) { throw new System.Exception("Enemy not found."); }
-
-                HBEnemy thisEnemy = thisEnemyObject.GetComponent<HBEnemy>();
-                HBCombatManager.CombatEncounter(player, thisEnemy, _direction);
-            }
-        }
-    }
-    */
-
-    public override void AttemptToMove(int curX, int curY, int destX, int destY, Action<int, int> CallbackMovedToPosition)
+    public override void AttemptToMove(int curX, int curY, int destX, int destY, Vector3Int movementDirection, Action<int, int> CallbackMovedToPosition)
     {
         int destinationX = curX + destX;
         int destinationY = curY + destY;
         _Tile destinationTile = tileGrid[destinationX, destinationY];
+
+        if (TileIsOccupied(destinationTile))
+        {
+            GameObject thisEnemyObject = destinationTile.gameObject;
+            Enemy thisEnemy = thisEnemyObject.GetComponent<Enemy>();
+            CombatManager.CombatEncounter(player, thisEnemy, movementDirection);
+            return;
+        }
 
         if (destinationTile is IAmWalkable) // TODO Check to see if this should be a static reference instead of a singleton reference
         {
@@ -58,13 +38,9 @@ public class PlayerMovement : EntityMovement
             CallbackMovedToPosition(destinationX, destinationY); // TODO May not be necessary
             return;
         }
-
-        if (destinationTile is IAmInteractive)
-        {
-            // Do combat
-            return;
-        }
     }
+
+    bool TileIsOccupied(_Tile tile) { return tile.gameObject != null; }
 
     void MoveToTile(_Tile destinationTile)
     {

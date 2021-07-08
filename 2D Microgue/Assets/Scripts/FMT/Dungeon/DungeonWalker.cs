@@ -47,7 +47,6 @@ public class DungeonWalker
         if (existingTile != null && existingTile is IAmWalkable) { return; }
 
         _FloorTile floorTile = new _FloorTile(floorTileBase);
-
         dungeonGenerator.PlaceTile(currentPosition.x, currentPosition.y, floorTile);
     }
 
