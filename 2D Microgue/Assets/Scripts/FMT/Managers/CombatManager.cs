@@ -1,38 +1,55 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace FMT
 {
-public static class CombatManager
+public class CombatManager : MonoBehaviour
 {
-    static Entity attacker;
-    static Entity defender;
-    static Vector3 directionOfAttack;
+    public static Action<float, float, float> OnShakeCamera;
 
-    public static void CombatEncounter(Entity _player, Entity _enemy, Vector3 _directionOfAttack)
+    Entity attacker;
+    Entity defender;
+    Vector3 directionOfAttack;
+
+    void OnEnable()
     {
-        bool playerAttacksFirst = _player.EntityCombat.PowerLevel > _enemy.EntityCombat.PowerLevel; // NOTE Can be changed to different conditions later
-
-        attacker = playerAttacksFirst ? _player : _enemy;
-        defender = playerAttacksFirst ? _enemy : _player;
-        directionOfAttack = playerAttacksFirst ? _directionOfAttack : -_directionOfAttack;
-
-        defender.EntityCombat.SetCombatState(true);
-        attacker.EntityCombat.SetCombatState(true);
-        attacker.EntityCombat.BumpAgainstTile(attacker.transform.position, directionOfAttack, CalculateDamage, CounterAttack);
+        PlayerMovement.OnTileInteraction += CombatEncounter;
+        EntityHealth.EntityDied          += EndCombat;
     }
 
-    static void CalculateDamage()
+    void OnDisable()
+    {
+        PlayerMovement.OnTileInteraction -= CombatEncounter;
+        EntityHealth.EntityDied          -= EndCombat;
+    }
+
+    public void CombatEncounter(Entity player, Entity enemy, Vector3 _directionOfAttack)
+    {
+        bool playerAttacksFirst = player.EntityCombat.PowerLevel > enemy.EntityCombat.PowerLevel; // TODO Change this to "if player has first strike perk" once implemented
+
+        attacker = playerAttacksFirst ? player : enemy;
+        defender = playerAttacksFirst ? enemy : player;
+        directionOfAttack = playerAttacksFirst ? _directionOfAttack : -_directionOfAttack;
+
+        defender.SetCombatState(true);
+        attacker.SetCombatState(true);
+        attacker.AnimateTileBump(attacker.transform.position, directionOfAttack, InflictDamage, CounterAttack);
+    }
+
+    void InflictDamage()
     {
         int damage = attacker.EntityCombat.AttackPower;
 
-        defender.EntityHealth.ChangeHealthCurrent(-damage);
+        defender.TakeDamage(-damage);
 
         Debug.Log(attacker.EntityName + " attacks " + defender.EntityName + " for " + attacker.EntityCombat.AttackPower + " damage");
+
+        OnShakeCamera?.Invoke(0.05f, 0.25f, 0.9f); // TODO Move this to its own method
     }
 
-    public static void CounterAttack()
+    public void CounterAttack()
     {
         Vector3 directionOfCounterAttack = -directionOfAttack;
         Entity counterAttacker = defender;
@@ -41,10 +58,12 @@ public static class CombatManager
         attacker = counterAttacker;
         defender = counterDefender;
 
-        attacker.EntityCombat.BumpAgainstTile(attacker.transform.position, directionOfCounterAttack, CalculateDamage, EndCombat);
+        if (attacker == null) { return; }
+
+        attacker.EntityCombat.AnimateTileBump(attacker.transform.position, directionOfCounterAttack, InflictDamage, EndCombat);
     }
 
-    static void EndCombat()
+    void EndCombat()
     {
         attacker.EntityCombat.SetCombatState(false);
         defender.EntityCombat.SetCombatState(false);

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -36,7 +37,7 @@ public abstract class Entity : MonoBehaviour
     {
         entityName = entityStatsReference.Name;
         entityHealth.SetHealthMax(entityStatsReference.HealthMax);
-        entityHealth.SetHealthCurrent(entityStatsReference.HealthMax);
+        entityHealth.SetHealthCurrent(entityStatsReference.HealthCurrent);
         entityCombat.SetBumpDuration(entityStatsReference.BumpDuration);
         entityCombat.SetAttackPower(entityStatsReference.AttackPower);
         entityCombat.SetPowerLevel(entityStatsReference.PowerLevel);
@@ -47,5 +48,14 @@ public abstract class Entity : MonoBehaviour
         x = xPosition;
         y = yPosition;
     }
+
+    public void TakeDamage(int damageAmount) => entityHealth.ChangeHealthCurrent(damageAmount);
+
+    public void SetCombatState(bool combatState) => entityCombat.SetCombatState(combatState);
+
+    public void AnimateTileBump(Vector3 _startingPosition, Vector3 _direction, Action _onContactCallback, Action _onCompleteCallback)
+    => entityCombat.AnimateTileBump(_startingPosition, _direction, _onContactCallback, _onCompleteCallback);
+
+
 }
 }

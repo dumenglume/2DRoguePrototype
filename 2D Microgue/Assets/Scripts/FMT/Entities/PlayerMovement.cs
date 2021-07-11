@@ -8,6 +8,7 @@ namespace FMT
 public class PlayerMovement : EntityMovement
 {
     public static event Action<_Tile> OnMoveToTile;
+    public static event Action<Entity, Entity, Vector3> OnTileInteraction;
     public static event Action OnMovementComplete;
 
     [SerializeField] Player player;
@@ -18,37 +19,43 @@ public class PlayerMovement : EntityMovement
 
     void Start() { tileGrid = DungeonManager.Instance.tileGrid; Debug.Log(tileGrid.Length); }
 
-    public override void AttemptToMove(int curX, int curY, int destX, int destY, Vector3Int movementDirection, Action<int, int> CallbackMovedToPosition)
+    public override void AttemptToMove(int curX, int curY, Vector3 movementDirection, Action<int, int> CallbackNewPosition)
     {
-        int destinationX = curX + destX;
-        int destinationY = curY + destY;
+        int destinationX = curX + (int) movementDirection.x;
+        int destinationY = curY + (int) movementDirection.y;
         _Tile destinationTile = tileGrid[destinationX, destinationY];
+
+        if (LeanTween.isTweening()) { return; }
 
         if (TileIsOccupied(destinationTile))
         {
-            GameObject thisEnemyObject = destinationTile.gameObject;
-            Enemy thisEnemy = thisEnemyObject.GetComponent<Enemy>();
-            CombatManager.CombatEncounter(player, thisEnemy, movementDirection);
+            GameObject destinationTileObject = destinationTile.gameObject;
+
+            Enemy thisEnemy = destinationTileObject.GetComponent<Enemy>();
+            if (thisEnemy != null) OnTileInteraction?.Invoke(player, thisEnemy, movementDirection);
+            CallbackNewPosition(curX, curY); // TODO May not be necessary
+
             return;
         }
 
         if (destinationTile is IAmWalkable) // TODO Check to see if this should be a static reference instead of a singleton reference
         {
-            MoveToTile(destinationTile);
-            CallbackMovedToPosition(destinationX, destinationY); // TODO May not be necessary
+            AnimateMovement(destinationTile);
+            CallbackNewPosition(destinationX, destinationY); // TODO May not be necessary
             return;
         }
     }
 
-    bool TileIsOccupied(_Tile tile) { return tile.gameObject != null; }
+    bool TileIsOccupied(_Tile tile) 
+    { 
+        return tile.gameObject != null;
+    }
 
-    void MoveToTile(_Tile destinationTile)
+    void AnimateMovement(_Tile destinationTile)
     {
-        if (LeanTween.isTweening()) { return; }
-
         Vector3Int tweenDestination = Vector3Int.RoundToInt(destinationTile.worldPosition);
-        BroadcastMovement(destinationTile);
         isMoving = true;
+        BroadcastMovement(destinationTile);
 
         LeanTween.move(gameObject, tweenDestination, movementDuration).setEaseInOutQuad().setOnComplete(() => 
         {
@@ -67,9 +74,6 @@ public class PlayerMovement : EntityMovement
         }
     }
 
-    void BroadcastMovement(_Tile _location)
-    {
-        OnMoveToTile?.Invoke(_location); // * Used for telling fog to clear at destination tile
-    }
+    void BroadcastMovement(_Tile _location) => OnMoveToTile?.Invoke(_location); // * Used for telling fog to clear at destination tile
 }
 }

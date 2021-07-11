@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace FMT
@@ -65,7 +63,7 @@ public class EntityHealth : MonoBehaviour
 
     void KillEntity()
     {
-        EntityDied?.Invoke();
+        EntityDied?.Invoke(); // TODO This should end combat
         PositionOfDeath?.Invoke(transform.position);
         Destroy(gameObject);
     }

@@ -15,7 +15,7 @@ public class EntityMovement : MonoBehaviour
 
     public void SetMovementDuration(float _timeInSeconds) { movementDuration = _timeInSeconds; }
 
-    public virtual void AttemptToMove(int curX, int curY, int destX, int destY, Vector3Int movementDirection, Action<int, int> CallbackMovedToPosition) {}
+    public virtual void AttemptToMove(int curX, int curY, Vector3 movementDirection, Action<int, int> CallbackMovedToPosition) {}
 
     protected void SetMovingToFalse() { isMoving = false; }
 }

@@ -31,11 +31,23 @@ public class Player : Entity
         PlayerSpawned?.Invoke(this);
     }
 
+    void OnEnable() => _ExitTile.ExitTileTriggered += SaveEntitySats;
+
+    void OnDisable() => _ExitTile.ExitTileTriggered -= SaveEntitySats;
+
     protected override void SetEntityStats()
     {
         base.SetEntityStats();
 
         entityMovement.SetMovementDuration(entityStatsReference.MovementDuration);
+    }
+
+    protected void SaveEntitySats() // TODO Change this to saving to a different location so it doesn't overwrite scriptable object
+    {
+        entityStatsReference.HealthMax     = entityHealth.HealthMax;
+        entityStatsReference.HealthCurrent = entityHealth.HealthCurrent;
+        entityStatsReference.AttackPower   = entityCombat.AttackPower;
+        entityStatsReference.PowerLevel    = entityCombat.PowerLevel;
     }
 
     void Update()
@@ -54,7 +66,7 @@ public class Player : Entity
 
         if (inputIsDetected && !entityMovement.IsMoving && !entityCombat.IsInCombat)
         {
-            entityMovement.AttemptToMove(x, y, (int) inputDirection.x, (int) inputDirection.y, Vector3Int.RoundToInt(inputDirection), SetEntityPosition);
+            entityMovement.AttemptToMove(x, y, Vector3Int.RoundToInt(inputDirection), SetEntityPosition);
         }
     }
 }

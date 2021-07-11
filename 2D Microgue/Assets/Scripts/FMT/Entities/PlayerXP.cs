@@ -2,17 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace FMT
+{
 public class PlayerXP : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] int currentXP = 0;
+    public int CurrentXP { get { return currentXP; } set { currentXP = value; } }
+    [SerializeField] int nextLevel = 10;
+    public int NextLevel { get { return nextLevel; } set { nextLevel = value; } }
+}
 }

@@ -53,9 +53,8 @@ public class EntitySpawner : MonoBehaviour
 
         GameObject player = Instantiate(playerPrefab, playerStartPosition, Quaternion.identity);
 
-        entityDictionary.Add(playerStartTile, player);
-
-        spawnablePositions.RemoveAt(0);
+        UpdateEntityDictionary(playerStartTile, player);
+        UpdateSpawnablePositions(0);
 
         if (generationSpeed > 0.0f) { yield return new WaitForSeconds(generationSpeed); }
     }
@@ -66,11 +65,11 @@ public class EntitySpawner : MonoBehaviour
 
         while(enemiesSpawned < maxEnemies)
         {
-            int uniform = Mathf.FloorToInt(spawnablePositions.Count / maxEnemies);
+            int spawnInterval = Mathf.CeilToInt(spawnablePositions.Count / maxEnemies);
 
             for (int i = 0; i < spawnablePositions.Count; i++)
             {
-                if (i % uniform == 0) // TODO Fix this later so that 10 enemies will not spawn twice as many enemies
+                if (i % spawnInterval == 0) // TODO Fix this later so that 10 enemies will not spawn twice as many enemies
                 {
                     _Tile enemyTile      = spawnablePositions[i];
                     int randomEnemyIndex = Random.Range(0, enemyPrefabList.Count);
@@ -78,8 +77,8 @@ public class EntitySpawner : MonoBehaviour
                     GameObject thisEnemy = Instantiate(enemyPrefabList[randomEnemyIndex], enemyTile.worldPosition, Quaternion.identity); // TODO May need to move to own function
                     enemyTile.gameObject = thisEnemy;
 
-                    entityDictionary.Add(enemyTile, thisEnemy);
-                    spawnablePositions.RemoveAt(i);
+                    UpdateEntityDictionary(enemyTile, thisEnemy);
+                    UpdateSpawnablePositions(i);
 
                     enemiesSpawned ++;
 
@@ -88,5 +87,13 @@ public class EntitySpawner : MonoBehaviour
             }
         }
     }
+
+    void UpdateSpawnablePositions(int index)
+    {
+        spawnablePositions.RemoveAt(index);
+        DungeonManager.Instance.RemoveFromWalkableList(index);
+    }
+
+    void UpdateEntityDictionary(_Tile tile, GameObject entity) => entityDictionary.Add(tile, entity);
 }
 }

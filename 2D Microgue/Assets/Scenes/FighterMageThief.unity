@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &5460920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5460919}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7f872b3c7d0e474693c64be7ca2b11c, type: 3}
+  m_Script: {fileID: 11500000, guid: eb1aa77cc6aa91e4595f4dfcbdd8d404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   textPowerLevel: {fileID: 847627831}
@@ -431,6 +431,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &786835956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 786835958}
+  - component: {fileID: 786835957}
+  m_Layer: 0
+  m_Name: Combat Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &786835957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786835956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 012531ebec5d1164a895b1ff983319d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &786835958
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786835956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &847627828
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,6 +563,9 @@ GameObject:
   - component: {fileID: 871875351}
   - component: {fileID: 871875354}
   - component: {fileID: 871875350}
+  - component: {fileID: 871875357}
+  - component: {fileID: 871875356}
+  - component: {fileID: 871875355}
   - component: {fileID: 871875353}
   - component: {fileID: 871875352}
   m_Layer: 0
@@ -571,9 +617,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 871875349}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c2a0261e2f47034f8c004859ac52fb0, type: 3}
+  m_Script: {fileID: 11500000, guid: 251e4024864bb14408778d393b82861d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectPrefabsList:
+  - {fileID: 6402222025874225062, guid: 6aa3795273e33614cb528235ef3e6699, type: 3}
+  maxObjects: 5
 --- !u!114 &871875353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -583,14 +632,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 871875349}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55620c539a47df54dae094c2b2db9f60, type: 3}
+  m_Script: {fileID: 11500000, guid: 49b83533af2a53949bb3b3695f4842ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 6402222025874225062, guid: 201bb6fe423eb954e94569e49e97b057,
-    type: 3}
-  enemyPrefabList:
-  - {fileID: 6402222025874225062, guid: 7fb2a609528309941a116b5bed13ec3f, type: 3}
-  maxEnemies: 10
+  objectPrefabsList:
+  - {fileID: 6402222025874225062, guid: 57e0c793e3850fc4ab8a35b967abcdac, type: 3}
+  - {fileID: 6402222025874225062, guid: d1a0789db1edefd4288e58d6c0e1c6b9, type: 3}
+  - {fileID: 6402222025874225062, guid: 74a3bbf0ca1711b4080a1f44ea605ae8, type: 3}
+  - {fileID: 6402222025874225062, guid: 880835da5c411654a8fe72e882dd6d23, type: 3}
+  - {fileID: 6402222025874225062, guid: 332734c1d5d04134c813e4eeabfacf9c, type: 3}
+  - {fileID: 6402222025874225062, guid: e10276b889a1a92418bef5e9c2bc9c33, type: 3}
+  maxObjects: 14
 --- !u!114 &871875354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -604,12 +656,68 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dungeonGenerator: {fileID: 871875350}
-  entitySpawner: {fileID: 871875353}
-  itemSpawner: {fileID: 871875352}
+  playerSpawner: {fileID: 871875356}
+  enemySpawner: {fileID: 871875353}
+  pickupSpawner: {fileID: 871875352}
+  chestSpawner: {fileID: 871875355}
+  spawners:
+  - {fileID: 871875356}
+  - {fileID: 871875355}
+  - {fileID: 871875353}
+  - {fileID: 871875352}
+  fogManager: {fileID: 871875357}
   worldWidth: 18
   worldHeight: 12
   tilemap: {fileID: 0}
-  generationSpeed: 0
+  generationSpeed: 0.075
+--- !u!114 &871875355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871875349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79d0478758469484ebc3d0cc54598221, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPrefabsList:
+  - {fileID: 6402222025874225062, guid: ea1566f4f5a242a409d3c794d39cc2a2, type: 3}
+  maxObjects: 2
+--- !u!114 &871875356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871875349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88102a6eb083cf44d94d274c495d86aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPrefabsList: []
+  maxObjects: 10
+  playerPrefab: {fileID: 6402222025874225062, guid: 201bb6fe423eb954e94569e49e97b057,
+    type: 3}
+--- !u!114 &871875357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871875349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 684e7d192c39acd48bf3dc93af404c44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid: {fileID: 1280951095}
+  tilemapFog: {fileID: 913303565}
+  tileFog: {fileID: 11400000, guid: 2b9dbd09d50060a498cd661907160fe8, type: 2}
+  fogRevealBoundaryWidth: {x: -1, y: 2}
+  fogRevealBoundaryHeight: {x: -1, y: 2}
 --- !u!1 &898255251
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,7 +783,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &913303563
 Transform:
   m_ObjectHideFlags: 0
@@ -956,6 +1064,36 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1136568140
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1136568141}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1136568141
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136568140}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1214173026
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,7 +1389,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1761511022}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6be0d0d8a518644dbc91215c53d332d, type: 3}
+  m_Script: {fileID: 11500000, guid: 04330324e7a52974e81e6e8d5ad0c7a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   camTransform: {fileID: 1761511025}

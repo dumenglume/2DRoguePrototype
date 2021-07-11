@@ -171,6 +171,8 @@ public class DungeonGenerator : MonoBehaviour
             }
         }
 
+        Debug.Log($"Dead End Count: {deadEndCount}");
+
         if (generationSpeed > 0.0f) { yield return new WaitForSeconds(generationSpeed); }
     }
 

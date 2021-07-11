@@ -5,7 +5,7 @@ public class HBEntityDifficultyColor : MonoBehaviour
 {
     [SerializeField] HBDifficultyColorScheme colorScheme;
 
-    public enum DifficultyColor { green, yellow, red, purple }
+    public enum DifficultyColor { white, green, yellow, red, purple }
     public DifficultyColor currentDifficultyColor = DifficultyColor.yellow;
 
     Dictionary<DifficultyColor, Color> difficultyColorDictionary;
@@ -31,10 +31,11 @@ public class HBEntityDifficultyColor : MonoBehaviour
 
         difficultyColorDictionary = new Dictionary<DifficultyColor, Color>
         { 
-            {DifficultyColor.green,  colorSchemeArray[0]},
-            {DifficultyColor.yellow, colorSchemeArray[1]},
-            {DifficultyColor.red,    colorSchemeArray[2]},
-            {DifficultyColor.purple, colorSchemeArray[3]},
+            {DifficultyColor.white,  colorSchemeArray[0]},
+            {DifficultyColor.green, colorSchemeArray[1]},
+            {DifficultyColor.yellow,    colorSchemeArray[2]},
+            {DifficultyColor.red, colorSchemeArray[3]},
+            {DifficultyColor.purple, colorSchemeArray[4]},
         };
     }
 

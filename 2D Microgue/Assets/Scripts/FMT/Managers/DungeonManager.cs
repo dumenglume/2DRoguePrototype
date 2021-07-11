@@ -13,19 +13,23 @@ public class DungeonManager : MonoBehaviour
     public static event Action dungeonComplete;
 
     [SerializeField] DungeonGenerator dungeonGenerator;
-    public EntitySpawner    entitySpawner; // ! Change this to not allow PlayerMovement to access this directly
-    [SerializeField] ItemSpawner      itemSpawner;
+    [SerializeField] SpawnerBase playerSpawner;
+    [SerializeField] SpawnerBase enemySpawner;
+    [SerializeField] SpawnerBase pickupSpawner;
+    [SerializeField] SpawnerBase chestSpawner;
+
+    [SerializeField] List<SpawnerBase> spawners;
+    [SerializeField] FogManager fogManager;
 
     [SerializeField] int worldWidth  = 18;
     [SerializeField] int worldHeight = 12;
 
     [SerializeField] Tilemap tilemap;
     public _Tile[,] tileGrid;
-    Dictionary<Vector3Int, _Tile> dictionaryWalkableTiles;
-    public Dictionary<Vector3Int, _Tile> DictionaryWalkableTiles { get => dictionaryWalkableTiles; set => dictionaryWalkableTiles = value; }
+    Dictionary<Vector3Int, _Tile> dictionaryWalkableTiles; // Used for copying over walkable tiles from dungeon generator which are added to listWalkableTiles
 
-    List<_Tile> listWalkableTiles;
-    public List<_Tile> ListWalkableTiles { get => listWalkableTiles; set => listWalkableTiles = value; }
+    List<_Tile> listWalkableTiles; // Used for when needing to loop through only walkable tiles vs. all tiles (for performance)
+    public List<_Tile> ListWalkableTiles => listWalkableTiles;
 
     List<_Tile> listDeadEndTiles;
     public List<_Tile> ListDeadEndTiles => listDeadEndTiles;
@@ -46,9 +50,9 @@ public class DungeonManager : MonoBehaviour
 
     void OnDisable() => _ExitTile.ExitTileTriggered -= StartNewDungeon;
 
-    void Start() => StartNewDungeon(0, 0);
+    void Start() => StartNewDungeon();
 
-    void StartNewDungeon(int startPositionX, int startPositionY) // TODO Implement x, y to determine dungeon start position
+    void StartNewDungeon() // TODO Implement x, y to determine dungeon start position
     {
         StopAllCoroutines();
         StartCoroutine(Co_StartNewDungeon());
@@ -60,16 +64,24 @@ public class DungeonManager : MonoBehaviour
         ClearExistingDungeon();
         yield return dungeonGenerator.Co_BeginGenerationProcess();
         GetDungeonData();
-        yield return entitySpawner.Co_SpawnEntities();
-        yield return itemSpawner.Co_SpawnItems();
+        yield return Co_BeginSpawnProcess();
+        fogManager.FloodfillFog();
         BroadcastDungeonComplete();
+    }
+
+    IEnumerator Co_BeginSpawnProcess()
+    {
+        for (int i = 0; i < spawners.Count; i++) 
+        { 
+            yield return spawners[i].Co_BeginSpawnProcess(); 
+        }
     }
 
     void ClearExistingDungeon()
     {
         dungeonGenerator.ClearAllTiles();
-        entitySpawner.ClearAllEntities();
-        itemSpawner.ClearAllItems();
+
+        for (int i = 0; i < spawners.Count; i++) { spawners[i].ClearAllObjects(); }
     }
 
     void GetDungeonData() 
@@ -78,6 +90,8 @@ public class DungeonManager : MonoBehaviour
         worldHeight       = dungeonGenerator.WorldHeight;
         tileGrid          = CloneTileArray(dungeonGenerator.TileGrid);
         listWalkableTiles = new List<_Tile>(dungeonGenerator.DictionaryWalkableTiles.Values);
+        listDeadEndTiles  = new List<_Tile>(dungeonGenerator.ListDeadEndTiles);
+        Debug.Log($"Dead Ends Transferred: { listDeadEndTiles.Count }");
     }
 
     _Tile[,] CloneTileArray(_Tile[,] tileArray)
@@ -115,6 +129,11 @@ public class DungeonManager : MonoBehaviour
     {
         Vector3Int newTilePosition = newTile.worldPosition;
         dictionaryWalkableTiles[newTilePosition] = newTile;
+    }
+
+    public void RemoveFromWalkableList(int index)
+    {
+        listWalkableTiles.RemoveAt(index);
     }
 
     void BroadcastNewDungeon() => newDungeon?.Invoke();

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Player
   powerLevel: 1
+  healthCurrent: 10
   healthMax: 10
   attackPower: 2
   movementDuration: 0.2
