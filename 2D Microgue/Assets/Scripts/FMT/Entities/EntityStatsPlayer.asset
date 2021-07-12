@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: EntityStatsPlayer
   m_EditorClassIdentifier: 
   name: Player
-  powerLevel: 1
-  healthCurrent: 10
-  healthMax: 10
-  attackPower: 2
+  powerCurrent: 10
+  powerMax: 10
   movementDuration: 0.2
   bumpDuration: 0.15

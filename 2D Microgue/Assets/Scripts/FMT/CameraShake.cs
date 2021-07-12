@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace FMT
 {
-public class CameraShake : MonoBehaviour
+public class CameraShake : MonoBehaviour // TODO Convert to static class
 {
     // Transform of the camera to shake. Grabs the gameObject's transform
     // if null.
@@ -31,12 +31,12 @@ public class CameraShake : MonoBehaviour
     void OnEnable()
     {
         originalPos = camTransform.localPosition;
-        CombatManager.OnShakeCamera += Shake;
+        CombatManager.ShakeCamera += Shake;
     }
 
     void OnDisable()
     {
-        CombatManager.OnShakeCamera -= Shake;
+        CombatManager.ShakeCamera -= Shake;
     }
 
     public void Shake(float _shakeDuration, float _shakeAmount, float _shakeDecay)

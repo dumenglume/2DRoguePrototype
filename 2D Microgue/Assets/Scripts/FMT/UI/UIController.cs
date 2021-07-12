@@ -12,15 +12,12 @@ public class UIController : MonoBehaviour
     public static UIController instance;
     public static UIController Instance => instance; // TODO Make not a singleton
 
-    [SerializeField] Text textPowerLevel;
-    [SerializeField] Text textHealth;
-    [SerializeField] Text textAttackPower;
+    [SerializeField] Text textPower;
     [SerializeField] Text textXP;
     [SerializeField] Text textGold;
 
     Player player;
-    EntityHealth playerHealth;
-    EntityCombat playerCombat;
+    EntityPower playerPower;
     PlayerXP playerXP;
     PlayerGold playerGold;
 
@@ -35,33 +32,30 @@ public class UIController : MonoBehaviour
     void OnEnable()
     {
         Player.PlayerSpawned         += GetPlayer;
-        EntityHealth.HealthChanged   += UpdateText;
+        EntityPower.PowerChanged     += UpdateText;
         PlayerGold.GoldAmountChanged += UpdateText;
     }
 
     void OnDisable()
     {
         Player.PlayerSpawned         -= GetPlayer;
-        EntityHealth.HealthChanged   -= UpdateText;
+        EntityPower.PowerChanged     -= UpdateText;
         PlayerGold.GoldAmountChanged -= UpdateText;
     }
 
     void GetPlayer(Player _player)
     {
         player       = _player;
-        playerHealth = _player.EntityHealth;
-        playerCombat = _player.EntityCombat;
+        playerPower  = _player.EntityPower;
         playerXP     = _player.PlayerXP;
         playerGold   = _player.PlayerGold;
     }
 
     void UpdateText()
     {
-        textPowerLevel.text  = "Level: "  + playerCombat.PowerLevel.ToString();
-        textHealth.text      = "Health: " + playerHealth.HealthCurrent.ToString() + "/" + playerHealth.HealthMax.ToString();
-        textAttackPower.text = "Attack: " + playerCombat.AttackPower.ToString();
-        textXP.text          = "XP: "     + playerXP.CurrentXP.ToString();
-        textGold.text        = "Gold: "   + "0";
+        textPower.text = "Power: " + playerPower.PowerCurrent.ToString() + "/" + playerPower.PowerMax.ToString();
+        textXP.text    = "XP: "    + playerXP.CurrentXP.ToString();
+        textGold.text  = "Gold: "  + "0";
     }
 }
 }

@@ -14,10 +14,12 @@ public class _Tile
     public _Tile[] cardinalNeighbors = new _Tile[4]; // North, East, South, West
     public GameObject gameObject;
 
-    [SerializeField] bool isVisited;
-    [SerializeField] bool isDeadEnd;
-    public bool IsVisited { get => isVisited; set => isVisited = value; }
-    public bool IsDeadEnd { get => isDeadEnd; set => isDeadEnd = value; }
+    [SerializeField] protected bool isVisited;
+    [SerializeField] protected bool isDeadEnd;
+    [SerializeField] protected bool isOccupied;
+    public bool IsVisited => isVisited;
+    public bool IsDeadEnd => isDeadEnd;
+    public bool IsOccupied => isOccupied;
 
     #endregion Variables ===========================================================================================================================================
     
@@ -37,5 +39,13 @@ public class _Tile
     public void DrawTile() => tilemap.SetTile(worldPosition, tileBase);
 
     public void UpdateTile() => tilemap.SetTile(worldPosition, tileBase);
+
+    public void MarkAsVisited(bool visitedState) => isVisited = visitedState;
+
+    public void MarkAsDeadEnd(bool deadEndState) => isDeadEnd = deadEndState;
+
+    public void MarkAsOccupied(bool occupiedState) => isOccupied = occupiedState;
+
+    public void AssignGameObject(GameObject objectToAssign) => gameObject = objectToAssign;
 }
 }

@@ -39,15 +39,14 @@ public class Player : Entity
     {
         base.SetEntityStats();
 
+        entityPower.SetPowerMax(entityStatsReference.PowerMax);
         entityMovement.SetMovementDuration(entityStatsReference.MovementDuration);
     }
 
     protected void SaveEntitySats() // TODO Change this to saving to a different location so it doesn't overwrite scriptable object
     {
-        entityStatsReference.HealthMax     = entityHealth.HealthMax;
-        entityStatsReference.HealthCurrent = entityHealth.HealthCurrent;
-        entityStatsReference.AttackPower   = entityCombat.AttackPower;
-        entityStatsReference.PowerLevel    = entityCombat.PowerLevel;
+        entityStatsReference.PowerMax     = entityPower.PowerMax;
+        entityStatsReference.PowerCurrent = entityPower.PowerCurrent;
     }
 
     void Update()
@@ -64,7 +63,7 @@ public class Player : Entity
 
         bool inputIsDetected = inputDirection.x != 0 || inputDirection.y != 0;
 
-        if (inputIsDetected && !entityMovement.IsMoving && !entityCombat.IsInCombat)
+        if (inputIsDetected && !entityMovement.IsMoving && !entityCombat.IsAnimatingCombat)
         {
             entityMovement.AttemptToMove(x, y, Vector3Int.RoundToInt(inputDirection), SetEntityPosition);
         }

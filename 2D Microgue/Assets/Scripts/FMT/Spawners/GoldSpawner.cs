@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace FMT
 {
-public class PickupSpawner : SpawnerBase
+public class GoldSpawner : SpawnerBase
 {
-    protected override IEnumerator Co_SpawnObjects()
+      protected override IEnumerator Co_SpawnObjects()
     {
         int objectsSpawned = 0;
 

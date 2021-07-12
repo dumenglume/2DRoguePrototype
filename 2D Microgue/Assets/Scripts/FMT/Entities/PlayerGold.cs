@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace FMT
 {
@@ -11,27 +8,19 @@ public class PlayerGold : MonoBehaviour
     public static event Action GoldAmountChanged;
 
     [SerializeField] int currentGold = 0;
-    public int CurrentGold { get { return currentGold; } set { currentGold = value; } }
+    public int CurrentGold => currentGold;
 
-    void OnEnable()
+    void OnEnable() => Gold.PickedUpGold += ChangeGoldAmount;
+
+    void OnDisable() => Gold.PickedUpGold -= ChangeGoldAmount;
+
+    void SetGoldAmount(int goldAmount) => currentGold = goldAmount;
+    
+    void ChangeGoldAmount(int goldAmount)
     {
-        // HBTileGold.PickedUpGold += ChangeGoldAmount;
-    }
-
-    void OnDisable()
-    {
-        // HBTileGold.PickedUpGold += ChangeGoldAmount;
-    }
-
-    void ChangeGoldAmount()
-    {
-        int goldAmount = Random.Range(10, 15);
-
-        print("Picked up " + goldAmount + " gold");
-
         currentGold += goldAmount;
-
         GoldAmountChanged?.Invoke();
+        print("Picked up " + goldAmount + " gold");
     }
 }
 }

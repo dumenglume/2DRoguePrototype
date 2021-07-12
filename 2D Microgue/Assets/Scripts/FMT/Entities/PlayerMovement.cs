@@ -29,11 +29,10 @@ public class PlayerMovement : EntityMovement
 
         if (TileIsOccupied(destinationTile))
         {
-            GameObject destinationTileObject = destinationTile.gameObject;
+            Enemy thisEnemy = destinationTile.gameObject.GetComponent<Enemy>();
 
-            Enemy thisEnemy = destinationTileObject.GetComponent<Enemy>();
             if (thisEnemy != null) OnTileInteraction?.Invoke(player, thisEnemy, movementDirection);
-            CallbackNewPosition(curX, curY); // TODO May not be necessary
+            CallbackNewPosition(curX, curY);
 
             return;
         }
@@ -41,14 +40,14 @@ public class PlayerMovement : EntityMovement
         if (destinationTile is IAmWalkable) // TODO Check to see if this should be a static reference instead of a singleton reference
         {
             AnimateMovement(destinationTile);
-            CallbackNewPosition(destinationX, destinationY); // TODO May not be necessary
+            CallbackNewPosition(destinationX, destinationY);
             return;
         }
     }
 
     bool TileIsOccupied(_Tile tile) 
     { 
-        return tile.gameObject != null;
+        return tile.IsOccupied;
     }
 
     void AnimateMovement(_Tile destinationTile)
@@ -70,7 +69,6 @@ public class PlayerMovement : EntityMovement
         {
             ITrigerrable thisTriggeredTile = triggeredTile as ITrigerrable;
             thisTriggeredTile.Trigger();
-            Debug.Log($"{ triggeredTile } trigged");
         }
     }
 

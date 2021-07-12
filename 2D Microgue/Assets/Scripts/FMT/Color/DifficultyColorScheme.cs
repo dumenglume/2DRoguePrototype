@@ -8,11 +8,9 @@ public class DifficultyColorScheme : ScriptableObject
     [Tooltip("Green, Yellow, Red, Purple")]
     [SerializeField] Color[] colorArray = new Color[]
     {
-        Color.white,
         Color.green,
         Color.yellow,
-        Color.red,
-        Color.magenta // * Purple
+        Color.red
     };
 
     public Color[] ColorArray => colorArray;

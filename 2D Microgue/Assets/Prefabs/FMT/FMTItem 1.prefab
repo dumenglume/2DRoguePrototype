@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3149547774350547624}
   - component: {fileID: 8950698523048642723}
+  - component: {fileID: 5211883116292493344}
   m_Layer: 10
   m_Name: FMTItem 1
   m_TagString: Player
@@ -83,6 +84,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5211883116292493344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6402222025874225062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6f56ae013e9ce041b505b71c1d48287, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8799071992907999269
 PrefabInstance:
   m_ObjectHideFlags: 0

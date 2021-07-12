@@ -8,17 +8,11 @@ public class EntityStats : ScriptableObject
     [SerializeField] new string name = "Entity";
     public string Name => name;
 
-    [SerializeField] int powerLevel = 1;
-    public int PowerLevel { get => powerLevel; set => powerLevel = value; }
+    [SerializeField] int powerCurrent = 1;
+    public int PowerCurrent { get => powerCurrent; set => powerCurrent = value; }
 
-    [SerializeField] int healthCurrent = 1;
-    public int HealthCurrent { get => healthCurrent; set => healthCurrent = value; }
-
-    [SerializeField] int healthMax = 1;
-    public int HealthMax { get => healthMax; set => healthMax = value; }
-
-    [SerializeField] int attackPower = 1;
-    public int AttackPower { get => attackPower; set => attackPower = value; }
+    [SerializeField] int powerMax = 1;
+    public int PowerMax { get => powerMax; set => powerMax = value; }
 
     [SerializeField] float movementDuration = 0.2f;
     public float MovementDuration { get => movementDuration; set => movementDuration = value; }

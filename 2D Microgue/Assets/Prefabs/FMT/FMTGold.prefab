@@ -10,12 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3149547774350547624}
   - component: {fileID: 8950698523048642723}
-  - component: {fileID: 9220835648936536071}
-  - component: {fileID: -2234560878474434041}
-  - component: {fileID: 4857172547939598001}
-  - component: {fileID: 757156133111253939}
+  - component: {fileID: 7110049455345494341}
   m_Layer: 10
-  m_Name: FMTEnemyGoblin
+  m_Name: FMTGold
   m_TagString: Player
   m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -75,8 +72,9 @@ SpriteRenderer:
   m_SortingLayerID: -252865937
   m_SortingLayer: 3
   m_SortingOrder: 1
-  m_Sprite: {fileID: 357918311154861224, guid: 208ed68ef6fd7cf4db4c7367995afeeb, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -8508047426450828288, guid: 208ed68ef6fd7cf4db4c7367995afeeb,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -86,7 +84,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &9220835648936536071
+--- !u!114 &7110049455345494341
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,55 +93,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6402222025874225062}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18c9f6c6a1e2afc44bb985388d3e5e42, type: 3}
+  m_Script: {fileID: 11500000, guid: 78408a68e7512e74fbefdccefd9f6470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityName: Enemy
-  entityStatsReference: {fileID: 11400000, guid: 1b610334b77822048958de165bf76c49,
-    type: 2}
---- !u!114 &-2234560878474434041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6402222025874225062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16046945db7b69342bfe3c874088282c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bumpDuration: 0.125
-  attackPower: 1
-  powerLevel: 2
---- !u!114 &4857172547939598001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6402222025874225062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5915e5674fce7324ca9e484cd08c90d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthCurrent: 1
-  healthMax: 1
---- !u!114 &757156133111253939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6402222025874225062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4230248961851224196ab5aa7d3b3bc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colorScheme: {fileID: 11400000, guid: 90e51dbb05f432d4687a9ef7f356ecfd, type: 2}
-  currentDifficultyColor: 2
+  goldValueRange: {x: 1, y: 10}
 --- !u!1001 &8799071992907999269
 PrefabInstance:
   m_ObjectHideFlags: 0

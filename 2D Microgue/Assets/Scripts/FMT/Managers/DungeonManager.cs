@@ -13,10 +13,6 @@ public class DungeonManager : MonoBehaviour
     public static event Action dungeonComplete;
 
     [SerializeField] DungeonGenerator dungeonGenerator;
-    [SerializeField] SpawnerBase playerSpawner;
-    [SerializeField] SpawnerBase enemySpawner;
-    [SerializeField] SpawnerBase pickupSpawner;
-    [SerializeField] SpawnerBase chestSpawner;
 
     [SerializeField] List<SpawnerBase> spawners;
     [SerializeField] FogManager fogManager;
@@ -89,6 +85,7 @@ public class DungeonManager : MonoBehaviour
         worldWidth        = dungeonGenerator.WorldWidth;
         worldHeight       = dungeonGenerator.WorldHeight;
         tileGrid          = CloneTileArray(dungeonGenerator.TileGrid);
+        tilemap           = dungeonGenerator.Tilemap;
         listWalkableTiles = new List<_Tile>(dungeonGenerator.DictionaryWalkableTiles.Values);
         listDeadEndTiles  = new List<_Tile>(dungeonGenerator.ListDeadEndTiles);
         Debug.Log($"Dead Ends Transferred: { listDeadEndTiles.Count }");

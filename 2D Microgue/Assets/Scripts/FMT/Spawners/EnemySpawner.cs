@@ -23,6 +23,7 @@ public class EnemySpawner : SpawnerBase
 
                     GameObject thisObject = Instantiate(objectPrefabsList[randomObjectIndex], tileToSpawnOn.worldPosition, Quaternion.identity); // TODO May need to move to own function
                     tileToSpawnOn.gameObject = thisObject;
+                    tileToSpawnOn.MarkAsOccupied(true);
 
                     AddObjectToDictionary(tileToSpawnOn, thisObject);
                     RemoveSpawnablePosition(i);

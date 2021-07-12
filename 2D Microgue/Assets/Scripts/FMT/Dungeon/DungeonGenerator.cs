@@ -21,6 +21,7 @@ public class DungeonGenerator : MonoBehaviour
 
     [Header("Tilemap Settings")]
     [SerializeField] Tilemap tilemap;
+    public Tilemap Tilemap => tilemap;
 
     [Header("Tilemap Settings")]
     [SerializeField] TileBase floorTileBase;
@@ -165,7 +166,7 @@ public class DungeonGenerator : MonoBehaviour
 
             if (GetWalkableNeighborCount(tile) == 1)
             {
-                tile.IsDeadEnd = true;
+                tile.MarkAsDeadEnd(true);
                 deadEndCount ++;
                 listDeadEndTiles.Add(tile);
             }

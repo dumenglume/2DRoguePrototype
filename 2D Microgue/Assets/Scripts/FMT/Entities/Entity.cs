@@ -7,11 +7,14 @@ namespace FMT
 {
 public abstract class Entity : MonoBehaviour
 {
+    public static event Action EntityDied;
+    public static event Action<Vector3> KilledAtPosition;
+
     protected EntityCombat entityCombat;
     public EntityCombat EntityCombat => entityCombat;
 
-    protected EntityHealth entityHealth;
-    public EntityHealth EntityHealth => entityHealth;
+    protected EntityPower entityPower;
+    public EntityPower EntityPower => entityPower;
 
     [Header("Entity Settings")]
     [SerializeField] string entityName;
@@ -23,8 +26,8 @@ public abstract class Entity : MonoBehaviour
 
     protected virtual void Awake() 
     {
-        entityCombat   = GetComponent<EntityCombat>();
-        entityHealth   = GetComponent<EntityHealth>();
+        entityCombat = GetComponent<EntityCombat>();
+        entityPower  = GetComponent<EntityPower>();
     }
 
     protected void Start()
@@ -36,11 +39,10 @@ public abstract class Entity : MonoBehaviour
     protected virtual void SetEntityStats()
     {
         entityName = entityStatsReference.Name;
-        entityHealth.SetHealthMax(entityStatsReference.HealthMax);
-        entityHealth.SetHealthCurrent(entityStatsReference.HealthCurrent);
+        entityPower.BindEntity(this);
+        entityPower.SetPowerMax(entityStatsReference.PowerMax);
+        entityPower.SetPowerCurrent(entityStatsReference.PowerCurrent);
         entityCombat.SetBumpDuration(entityStatsReference.BumpDuration);
-        entityCombat.SetAttackPower(entityStatsReference.AttackPower);
-        entityCombat.SetPowerLevel(entityStatsReference.PowerLevel);
     }
 
     public void SetEntityPosition(int xPosition, int yPosition)
@@ -49,13 +51,22 @@ public abstract class Entity : MonoBehaviour
         y = yPosition;
     }
 
-    public void TakeDamage(int damageAmount) => entityHealth.ChangeHealthCurrent(damageAmount);
+    public void TakeDamage(int damageAmount) => entityPower.ChangePowerCurrent(damageAmount);
 
     public void SetCombatState(bool combatState) => entityCombat.SetCombatState(combatState);
 
     public void AnimateTileBump(Vector3 _startingPosition, Vector3 _direction, Action _onContactCallback, Action _onCompleteCallback)
-    => entityCombat.AnimateTileBump(_startingPosition, _direction, _onContactCallback, _onCompleteCallback);
+    {
+        entityCombat.AnimateTileBump(_startingPosition, _direction, _onContactCallback, _onCompleteCallback);
+    }
 
-
+    public void KillEntity()
+    {
+        EntityDied?.Invoke();
+        KilledAtPosition?.Invoke(transform.position);
+        DungeonManager.Instance.tileGrid[x, y].gameObject = null; // TODO Convert this to method within Dungeon Manager
+        DungeonManager.Instance.tileGrid[x, y].MarkAsOccupied(false);
+        Destroy(gameObject);
+    }
 }
 }
