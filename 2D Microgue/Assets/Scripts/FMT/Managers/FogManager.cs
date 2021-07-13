@@ -19,21 +19,19 @@ namespace FMT
 
         void OnEnable() 
         {
-            //EntitySpawner.revealPlayerTile     += RevealTilesAtLocation;
             PlayerMovement.OnMoveToTile += RevealTilesAtLocation;
         }
 
         void OnDisable() 
         {
-            //EntitySpawner.revealPlayerTile     -= RevealTilesAtLocation;
             PlayerMovement.OnMoveToTile -= RevealTilesAtLocation;
         }
 
-        public void FloodfillFog() // ! Fix magic numbers
+        public void FloodfillFog(int fogWidth, int fogHeight) // ! Fix magic numbers
         {
-            for (int x = 0; x < 18; x++)
+            for (int x = 0; x < fogWidth; x++)
             {
-                for (int y = 0; y < 12; y++)
+                for (int y = 0; y < fogHeight; y++)
                 {
                     Vector3Int tilePosition = new Vector3Int(x, y, 0);
                     tilemapFog.SetTile(tilePosition, tileFog);
@@ -41,7 +39,7 @@ namespace FMT
             }
         }
 
-        void RevealTilesAtLocation(_Tile tile)
+        public void RevealTilesAtLocation(_Tile tile)
         {
             Vector3Int gridPosition = grid.WorldToCell(tile.worldPosition);
 

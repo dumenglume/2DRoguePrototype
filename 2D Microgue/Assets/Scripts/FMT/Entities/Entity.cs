@@ -30,7 +30,7 @@ public abstract class Entity : MonoBehaviour
         entityPower  = GetComponent<EntityPower>();
     }
 
-    protected void Start()
+    protected virtual void Start()
     {
         SetEntityStats();
         SetEntityPosition((int) transform.position.x, (int) transform.position.y);
@@ -60,7 +60,9 @@ public abstract class Entity : MonoBehaviour
         entityCombat.AnimateTileBump(_startingPosition, _direction, _onContactCallback, _onCompleteCallback);
     }
 
-    public void KillEntity()
+    public void KillEntity() => Die(); // This points to a separate method which can be overriden by the Enemy class to award XP
+
+    protected virtual void Die()
     {
         EntityDied?.Invoke();
         KilledAtPosition?.Invoke(transform.position);

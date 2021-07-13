@@ -1,70 +1,79 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace FMT
 {
 public class EntityPower : MonoBehaviour
 {
-    public static event Action PowerChanged;
+    [SerializeField] protected int powerCurrent = 10;
+    [SerializeField] protected int powerMax = 10;
+    public int PowerCurrent 
+    { 
+        get => powerCurrent;
 
-    [SerializeField] int powerCurrent = 1;
-    [SerializeField] int powerMax = 1;
-    public int PowerCurrent => powerCurrent;
-    public int PowerMax => powerMax;
+        set
+        {
+            powerCurrent = value;
+            CheckPower();
+        }
+    }
+    public int PowerMax 
+    { 
+        get => powerMax;
+
+        set
+        {
+            powerMax = value;
+            CheckPower();
+        }
+    }
+
+    [SerializeField] TextMesh powerSpriteText; // TODO Find a way to separate this into its own class
     Entity parentEntity; // TODO Find cleaner way of doing this
 
-    [SerializeField] TextMesh powerText; // TODO Find a way to separate this into its own class
+    void OnEnable()
+    {
+        PlayerXP.PlayerLeveledUp += RefillPower;
+    }
+
+    void OnDisable()
+    {
+        PlayerXP.PlayerLeveledUp -= RefillPower;
+    }
 
     public void BindEntity(Entity entity) => parentEntity = entity;
 
-    public void SetPowerCurrent(int powerCurrentAmount)
+    public void SetPowerCurrent(int powerCurrentAmount) => PowerCurrent = powerCurrentAmount;
+
+    public void ChangePowerCurrent(int powerCurrentAmount) => PowerCurrent += powerCurrentAmount;
+
+    public void SetPowerMax(int powerMaxAmount) => PowerMax = powerMaxAmount;
+
+    public void ChangePowerMax(int powerMaxAmount) => PowerMax += powerMaxAmount;
+
+    public void RefillPower(int maxPowerIncrease)
     {
-        powerCurrent = powerCurrentAmount;
-        PowerChanged?.Invoke();
-        CheckPower();
-        UpdatePowerText();
+        ChangePowerMax(maxPowerIncrease);
+        SetPowerCurrent(powerMax);
     }
 
-    public void ChangePowerCurrent(int powerCurrentAmount)
-    {
-        powerCurrent += powerCurrentAmount;
-        PowerChanged?.Invoke();
-        CheckPower();
-        UpdatePowerText();
-    }
-
-    public void SetPowerMax(int powerMaxAmount)
-    {
-        powerMax = powerMaxAmount;
-        PowerChanged?.Invoke();
-        ClampPower();
-        UpdatePowerText();
-    }
-
-    public void ChangePowerMax(int powerMaxAmount)
-    {
-        powerMax += powerMaxAmount;
-        PowerChanged?.Invoke();
-        ClampPower();
-        UpdatePowerText();
-    }
-
-    void CheckPower()
+    protected virtual void CheckPower()
     {
         if (powerCurrent <= 0)
         {
             powerCurrent = 0;
-            parentEntity.KillEntity();
+            PowerDepleted();
         }
 
         else if (powerCurrent > powerMax)
         {
-            ClampPower();
+            powerCurrent = powerMax;
         }
+
+        UpdatePowerSpriteText();
     }
 
-    void ClampPower() { if (powerCurrent > powerMax) { powerCurrent = powerMax; } }
+    protected virtual void PowerDepleted() => parentEntity.KillEntity();
 
-    void UpdatePowerText() => powerText.text = powerCurrent.ToString();
+    void UpdatePowerSpriteText() => powerSpriteText.text = powerCurrent.ToString();
 }
 }

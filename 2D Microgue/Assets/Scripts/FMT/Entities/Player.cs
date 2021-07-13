@@ -49,6 +49,8 @@ public class Player : Entity
 
         entityPower.SetPowerMax(entityStatsReference.PowerMax);
         entityMovement.SetMovementDuration(entityStatsReference.MovementDuration);
+        //playerGold.SetGoldAmount(0); // ! This may break gold by resetting with each floor
+        //playerXP.SetXPAmount(0); // ! This may break XP by resetting with each floor
     }
 
     protected void SaveEntitySats() // TODO Change this to saving to a different location so it doesn't overwrite scriptable object

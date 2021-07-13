@@ -15,7 +15,7 @@ public class DungeonManager : MonoBehaviour
     [SerializeField] DungeonGenerator dungeonGenerator;
 
     [SerializeField] List<SpawnerBase> spawners;
-    [SerializeField] FogManager fogManager;
+    [SerializeField] List<FogManager> fogManagers;
 
     [SerializeField] int worldWidth  = 18;
     [SerializeField] int worldHeight = 12;
@@ -60,9 +60,18 @@ public class DungeonManager : MonoBehaviour
         ClearExistingDungeon();
         yield return dungeonGenerator.Co_BeginGenerationProcess();
         GetDungeonData();
+        BeginFogProcess();
         yield return Co_BeginSpawnProcess();
-        fogManager.FloodfillFog();
         BroadcastDungeonComplete();
+    }
+
+    void BeginFogProcess()
+    {
+        for (int i = 0; i < fogManagers.Count; i++) 
+        { 
+            fogManagers[i].FloodfillFog(worldWidth, worldHeight);
+            fogManagers[i].RevealTilesAtLocation(listWalkableTiles[0]);
+        }
     }
 
     IEnumerator Co_BeginSpawnProcess()

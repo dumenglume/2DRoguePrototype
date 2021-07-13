@@ -32,15 +32,17 @@ public class UIController : MonoBehaviour
     void OnEnable()
     {
         Player.PlayerSpawned         += GetPlayer;
-        EntityPower.PowerChanged     += UpdateText;
-        PlayerGold.GoldAmountChanged += UpdateText;
+        PlayerPower.PowerChanged     += UpdateTextPower;
+        PlayerXP.PlayerXPChanged     += UpdateTextXP;
+        PlayerGold.GoldAmountChanged += UpdateTextGold;
     }
 
     void OnDisable()
     {
         Player.PlayerSpawned         -= GetPlayer;
-        EntityPower.PowerChanged     -= UpdateText;
-        PlayerGold.GoldAmountChanged -= UpdateText;
+        PlayerPower.PowerChanged     -= UpdateTextPower;
+        PlayerXP.PlayerXPChanged     -= UpdateTextXP;
+        PlayerGold.GoldAmountChanged -= UpdateTextGold;
     }
 
     void GetPlayer(Player _player)
@@ -49,13 +51,16 @@ public class UIController : MonoBehaviour
         playerPower  = _player.EntityPower;
         playerXP     = _player.PlayerXP;
         playerGold   = _player.PlayerGold;
+
+        UpdateTextPower();
+        UpdateTextXP();
+        UpdateTextGold();
     }
 
-    void UpdateText() // TODO Refactor into individual methods?
-    {
-        textPower.text = $"Power: { playerPower.PowerCurrent.ToString() } / { playerPower.PowerMax.ToString() }";
-        textXP.text    = $"XP:    { playerXP.CurrentXP.ToString() }";
-        textGold.text  = $"Gold:  { playerGold.CurrentGold.ToString() }";
-    }
+    void UpdateTextPower() => textPower.text = $"Power: { playerPower.PowerCurrent.ToString() } / { playerPower.PowerMax.ToString() }";
+
+    void UpdateTextXP() => textXP.text = $"XP:    { playerXP.CurrentXP.ToString()} / {playerXP.NextLevel.ToString()}";
+
+    void UpdateTextGold() => textGold.text = $"Gold:  { playerGold.CurrentGold.ToString() }";
 }
 }

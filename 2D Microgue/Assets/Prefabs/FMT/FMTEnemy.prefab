@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 3149547774350547624}
   - component: {fileID: 8950698523048642723}
   - component: {fileID: 9220835648936536071}
-  - component: {fileID: 2071494007407675396}
+  - component: {fileID: 3033222506991494127}
   - component: {fileID: -2234560878474434041}
   - component: {fileID: 757156133111253939}
   m_Layer: 10
@@ -226,7 +226,7 @@ MonoBehaviour:
   entityName: Enemy
   entityStatsReference: {fileID: 11400000, guid: 7008d907f08087d43a6131ae6b0b9778,
     type: 2}
---- !u!114 &2071494007407675396
+--- !u!114 &3033222506991494127
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -235,12 +235,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6402222025874225062}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b17643f3b444ce74085d7f7c7a2f681c, type: 3}
+  m_Script: {fileID: 11500000, guid: ea5a335f5d188474ca68710429e5842a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerCurrent: 1
-  powerMax: 1
-  powerText: {fileID: 249872944465535923}
+  powerCurrent: 10
+  powerMax: 10
+  powerSpriteText: {fileID: 249872944465535923}
 --- !u!114 &-2234560878474434041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,4 +267,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorScheme: {fileID: 11400000, guid: 90e51dbb05f432d4687a9ef7f356ecfd, type: 2}
-  currentDifficultyColor: 2
+  currentDifficultyColor: 1

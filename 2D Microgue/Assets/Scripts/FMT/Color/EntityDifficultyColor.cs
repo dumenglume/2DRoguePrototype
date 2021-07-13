@@ -26,22 +26,28 @@ public class EntityDifficultyColor : MonoBehaviour
 
     void OnEnable()
     {
-        EntityPower.PowerChanged += UpdateDifficultyColor;
+        Player.PlayerSpawned     += GetPlayer;
+        PlayerPower.PowerChanged += UpdateDifficultyColor;
     }
 
     void OnDisable()
     {
-        EntityPower.PowerChanged -= UpdateDifficultyColor;
+        Player.PlayerSpawned     -= GetPlayer;
+        PlayerPower.PowerChanged -= UpdateDifficultyColor;
     }
 
-    void Start()
+    void Start() => InitializeDictionary();
+
+    void GetPlayer(Player playerEntity)
     {
-        InitializeDictionary();
+        player = playerEntity;
+
+        if (player == null) return;
+
         UpdateDifficultyColor();
-        SetSpriteColor();
     }
 
-    void InitializeDictionary()
+    public void InitializeDictionary()
     {
         Color[] colorSchemeArray = colorScheme.ColorArray;
 
@@ -55,17 +61,23 @@ public class EntityDifficultyColor : MonoBehaviour
 
     public void UpdateDifficultyColor() // TODO Make this cleaner
     {
-        player = FindObjectOfType<Player>();
+        if (player == null) return;
+
         int playerPower     = player.EntityPower.PowerCurrent;
         int thisEntityPower = thisEntity.EntityPower.PowerCurrent;
 
         if (thisEntityPower >= playerPower) { currentDifficultyColor = DifficultyColor.red; }
         else { currentDifficultyColor = DifficultyColor.green; }
+
+        UpdateSpriteColor();
     }
 
-    void SetSpriteColor() // TODO Change this to change color of outline vs. entire sprite
+    void UpdateSpriteColor() // TODO Change this to change color of outline vs. entire sprite
     {
         if (spriteRenderer == null) { throw new System.Exception("Sprite Renderer is null"); }
+
+        //Debug.Log($"Sprite Renderer: {spriteRenderer}");
+        //Debug.Log($"Difficulty Color: {difficultyColorDictionary[currentDifficultyColor]}");
 
         spriteRenderer.color = difficultyColorDictionary[currentDifficultyColor];
     }

@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 1737594554145782470}
   - component: {fileID: 4692769840295200140}
   - component: {fileID: -2234560878474434041}
-  - component: {fileID: 8334497093856938691}
+  - component: {fileID: 4789013935627178603}
   - component: {fileID: 2856249277787501875}
   - component: {fileID: -1967499665417533602}
   m_Layer: 10
@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bumpDuration: 0.125
---- !u!114 &8334497093856938691
+--- !u!114 &4789013935627178603
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -277,12 +277,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6402222025874225062}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b17643f3b444ce74085d7f7c7a2f681c, type: 3}
+  m_Script: {fileID: 11500000, guid: 73d6b1947c8aa8a4fa9700039ed88938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerCurrent: 1
-  powerMax: 1
-  powerText: {fileID: 5306417295736296544}
+  powerCurrent: 10
+  powerMax: 10
+  powerSpriteText: {fileID: 5306417295736296544}
 --- !u!114 &2856249277787501875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,4 +309,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentXP: 0
-  nextLevel: 10
+  nextLevel: 20
+  xpRequirementMultiplier: 5
