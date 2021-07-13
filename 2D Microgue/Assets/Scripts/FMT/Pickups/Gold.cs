@@ -14,6 +14,10 @@ public class Gold : MonoBehaviour, IAmPickupable
 
     void Start() => goldValue = Random.Range(goldValueRange.x, goldValueRange.y);
 
-    public void TriggerPickup() => PickedUpGold?.Invoke(goldValue);
+    public void TriggerPickup()
+    {
+        PickedUpGold?.Invoke(goldValue);
+        gameObject.SetActive(false);
+    }
 }
 }

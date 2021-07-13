@@ -7,7 +7,6 @@ namespace FMT
 public class _FloorTile : _Tile, IAmWalkable, ITrigerrable
 {
     public static Action OnVisitedTile;
-    public static Action OnPickedUpItem;
 
     public _FloorTile(TileBase tileSprite) : base(tileSprite) {}
 
@@ -19,10 +18,14 @@ public class _FloorTile : _Tile, IAmWalkable, ITrigerrable
             OnVisitedTile?.Invoke();
         }
 
-        if (gameObject == null) { return; }
+        if (boundGameObject == null) { return; }
 
-        OnPickedUpItem?.Invoke();
-        gameObject.SetActive(false);
+        IAmPickupable pickupObject = boundGameObject.GetComponent<IAmPickupable>();
+
+        if (pickupObject == null) { return; }
+
+        pickupObject.TriggerPickup();
+        BindGameObjectToTile(null);
     }
 }
 }

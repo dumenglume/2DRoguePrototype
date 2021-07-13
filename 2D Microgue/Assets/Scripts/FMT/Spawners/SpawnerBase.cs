@@ -58,7 +58,7 @@ public abstract class SpawnerBase : MonoBehaviour
                     int randomObjectIndex = Random.Range(0, objectPrefabsList.Count);
 
                     GameObject thisObject = Instantiate(objectPrefabsList[randomObjectIndex], tileToSpawnOn.worldPosition, Quaternion.identity); // TODO May need to move to own function
-                    tileToSpawnOn.gameObject = thisObject;
+                    tileToSpawnOn.boundGameObject = thisObject;
 
                     AddObjectToDictionary(tileToSpawnOn, thisObject);
                     RemoveSpawnablePosition(i);

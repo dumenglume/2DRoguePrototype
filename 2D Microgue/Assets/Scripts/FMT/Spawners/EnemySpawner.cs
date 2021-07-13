@@ -10,6 +10,8 @@ public class EnemySpawner : SpawnerBase
     {
         int objectsSpawned = 0;
 
+        Debug.Log("Spawning enemies");
+
         while(objectsSpawned < maxObjects)
         {
             int spawnInterval = Mathf.CeilToInt(spawnablePositions.Count / maxObjects);
@@ -22,7 +24,7 @@ public class EnemySpawner : SpawnerBase
                     int randomObjectIndex = Random.Range(0, objectPrefabsList.Count);
 
                     GameObject thisObject = Instantiate(objectPrefabsList[randomObjectIndex], tileToSpawnOn.worldPosition, Quaternion.identity); // TODO May need to move to own function
-                    tileToSpawnOn.gameObject = thisObject;
+                    tileToSpawnOn.boundGameObject = thisObject;
                     tileToSpawnOn.MarkAsOccupied(true);
 
                     AddObjectToDictionary(tileToSpawnOn, thisObject);

@@ -64,7 +64,7 @@ public abstract class Entity : MonoBehaviour
     {
         EntityDied?.Invoke();
         KilledAtPosition?.Invoke(transform.position);
-        DungeonManager.Instance.tileGrid[x, y].gameObject = null; // TODO Convert this to method within Dungeon Manager
+        DungeonManager.Instance.tileGrid[x, y].boundGameObject = null; // TODO Convert this to method within Dungeon Manager
         DungeonManager.Instance.tileGrid[x, y].MarkAsOccupied(false);
         Destroy(gameObject);
     }

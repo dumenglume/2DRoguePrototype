@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6f56ae013e9ce041b505b71c1d48287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  valueRange: {x: 4, y: 4}
 --- !u!1001 &8799071992907999269
 PrefabInstance:
   m_ObjectHideFlags: 0

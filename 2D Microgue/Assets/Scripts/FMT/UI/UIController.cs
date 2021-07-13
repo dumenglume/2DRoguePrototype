@@ -51,11 +51,11 @@ public class UIController : MonoBehaviour
         playerGold   = _player.PlayerGold;
     }
 
-    void UpdateText()
+    void UpdateText() // TODO Refactor into individual methods?
     {
-        textPower.text = "Power: " + playerPower.PowerCurrent.ToString() + "/" + playerPower.PowerMax.ToString();
-        textXP.text    = "XP: "    + playerXP.CurrentXP.ToString();
-        textGold.text  = "Gold: "  + "0";
+        textPower.text = $"Power: { playerPower.PowerCurrent.ToString() } / { playerPower.PowerMax.ToString() }";
+        textXP.text    = $"XP:    { playerXP.CurrentXP.ToString() }";
+        textGold.text  = $"Gold:  { playerGold.CurrentGold.ToString() }";
     }
 }
 }

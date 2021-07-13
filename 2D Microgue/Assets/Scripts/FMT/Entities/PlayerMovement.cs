@@ -29,7 +29,7 @@ public class PlayerMovement : EntityMovement
 
         if (TileIsOccupied(destinationTile))
         {
-            Enemy thisEnemy = destinationTile.gameObject.GetComponent<Enemy>();
+            Enemy thisEnemy = destinationTile.boundGameObject.GetComponent<Enemy>();
 
             if (thisEnemy != null) OnTileInteraction?.Invoke(player, thisEnemy, movementDirection);
             CallbackNewPosition(curX, curY);

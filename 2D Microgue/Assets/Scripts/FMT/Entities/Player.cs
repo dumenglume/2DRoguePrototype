@@ -31,9 +31,17 @@ public class Player : Entity
         PlayerSpawned?.Invoke(this);
     }
 
-    void OnEnable() => _ExitTile.ExitTileTriggered += SaveEntitySats;
+    void OnEnable() 
+    {
+        _ExitTile.ExitTileTriggered += SaveEntitySats;
+        Pickup.PickedUpItem         += entityPower.ChangePowerCurrent;
+    }
 
-    void OnDisable() => _ExitTile.ExitTileTriggered -= SaveEntitySats;
+    void OnDisable()
+    {
+        _ExitTile.ExitTileTriggered -= SaveEntitySats;
+        Pickup.PickedUpItem         -= entityPower.ChangePowerCurrent;
+    }
 
     protected override void SetEntityStats()
     {

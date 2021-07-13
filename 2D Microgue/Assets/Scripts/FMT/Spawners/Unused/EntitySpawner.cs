@@ -75,7 +75,7 @@ public class EntitySpawner : MonoBehaviour
                     int randomEnemyIndex = Random.Range(0, enemyPrefabList.Count);
 
                     GameObject thisEnemy = Instantiate(enemyPrefabList[randomEnemyIndex], enemyTile.worldPosition, Quaternion.identity); // TODO May need to move to own function
-                    enemyTile.gameObject = thisEnemy;
+                    enemyTile.boundGameObject = thisEnemy;
 
                     UpdateEntityDictionary(enemyTile, thisEnemy);
                     UpdateSpawnablePositions(i);

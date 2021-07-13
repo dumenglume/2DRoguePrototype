@@ -12,7 +12,7 @@ public class _Tile
     public Tilemap    tilemap   {get; protected set;}
     public TileBase   tileBase;  // {get; protected set;}
     public _Tile[] cardinalNeighbors = new _Tile[4]; // North, East, South, West
-    public GameObject gameObject;
+    public GameObject boundGameObject;
 
     [SerializeField] protected bool isVisited;
     [SerializeField] protected bool isDeadEnd;
@@ -46,6 +46,6 @@ public class _Tile
 
     public void MarkAsOccupied(bool occupiedState) => isOccupied = occupiedState;
 
-    public void AssignGameObject(GameObject objectToAssign) => gameObject = objectToAssign;
+    public void BindGameObjectToTile(GameObject objectToBind) => boundGameObject = objectToBind;
 }
 }
