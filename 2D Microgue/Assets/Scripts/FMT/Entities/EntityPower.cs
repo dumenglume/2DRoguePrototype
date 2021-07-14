@@ -30,16 +30,6 @@ public class EntityPower : MonoBehaviour
     [SerializeField] TextMesh powerSpriteText; // TODO Find a way to separate this into its own class
     Entity parentEntity; // TODO Find cleaner way of doing this
 
-    void OnEnable()
-    {
-        PlayerXP.PlayerLeveledUp += RefillPower;
-    }
-
-    void OnDisable()
-    {
-        PlayerXP.PlayerLeveledUp -= RefillPower;
-    }
-
     public void BindEntity(Entity entity) => parentEntity = entity;
 
     public void SetPowerCurrent(int powerCurrentAmount) => PowerCurrent = powerCurrentAmount;
@@ -49,12 +39,6 @@ public class EntityPower : MonoBehaviour
     public void SetPowerMax(int powerMaxAmount) => PowerMax = powerMaxAmount;
 
     public void ChangePowerMax(int powerMaxAmount) => PowerMax += powerMaxAmount;
-
-    public void RefillPower(int maxPowerIncrease)
-    {
-        ChangePowerMax(maxPowerIncrease);
-        SetPowerCurrent(powerMax);
-    }
 
     protected virtual void CheckPower()
     {

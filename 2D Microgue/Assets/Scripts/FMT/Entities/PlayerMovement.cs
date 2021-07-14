@@ -54,12 +54,13 @@ public class PlayerMovement : EntityMovement
     {
         Vector3Int tweenDestination = Vector3Int.RoundToInt(destinationTile.worldPosition);
         isMoving = true;
-        BroadcastMovement(destinationTile);
+        BroadcastMovementStart(destinationTile);
 
         LeanTween.move(gameObject, tweenDestination, movementDuration).setEaseInOutQuad().setOnComplete(() => 
         {
             TriggerTile(destinationTile); // TODO Move to separate class?
             SetMovingToFalse();
+            BroadcastMovementComplete();
         });
     }
 
@@ -72,6 +73,8 @@ public class PlayerMovement : EntityMovement
         }
     }
 
-    void BroadcastMovement(_Tile _location) => OnMoveToTile?.Invoke(_location); // * Used for telling fog to clear at destination tile
+    void BroadcastMovementStart(_Tile _location) => OnMoveToTile?.Invoke(_location); // * Used for telling fog to clear at destination tile
+
+    void BroadcastMovementComplete() => OnMovementComplete?.Invoke();
 }
 }

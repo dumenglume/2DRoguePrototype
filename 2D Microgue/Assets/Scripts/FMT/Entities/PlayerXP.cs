@@ -17,8 +17,10 @@ public class PlayerXP : MonoBehaviour
         get => currentXP;
 
         set 
-        { 
-            if (currentXP + value >= nextLevel) { LevelUp(value); }
+        {
+            Debug.Log($"Current XP: {currentXP} + Value: {value} / Next Level: {nextLevel}");
+
+            if (value >= nextLevel) { LevelUp(value); }
 
             else { currentXP = value; }
 

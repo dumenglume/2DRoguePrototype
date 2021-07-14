@@ -153,6 +153,7 @@ MonoBehaviour:
   textPower: {fileID: 204132758}
   textXP: {fileID: 1214173028}
   textGold: {fileID: 1052310126}
+  textFood: {fileID: 1279765885}
 --- !u!4 &5460921
 Transform:
   m_ObjectHideFlags: 0
@@ -606,6 +607,7 @@ GameObject:
   - component: {fileID: 871875353}
   - component: {fileID: 871875355}
   - component: {fileID: 871875352}
+  - component: {fileID: 871875360}
   - component: {fileID: 871875358}
   m_Layer: 0
   m_Name: Dungeon Manager
@@ -626,7 +628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b95a04f38e1930c43ae3bc32293bf3cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldWidth: 12
+  worldWidth: 18
   worldHeight: 12
   tilemap: {fileID: 165510420}
   floorTileBase: {fileID: 11400000, guid: 77bb533f79956da498897347d43a04dd, type: 2}
@@ -699,6 +701,7 @@ MonoBehaviour:
   - {fileID: 871875353}
   - {fileID: 871875352}
   - {fileID: 871875358}
+  - {fileID: 871875360}
   fogManagers:
   - {fileID: 871875359}
   - {fileID: 871875357}
@@ -786,6 +789,21 @@ MonoBehaviour:
   tileFog: {fileID: 11400000, guid: 0c9423b858d8ac142909e6692c1ad5fd, type: 2}
   fogRevealBoundaryWidth: {x: -1, y: 2}
   fogRevealBoundaryHeight: {x: -1, y: 2}
+--- !u!114 &871875360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871875349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 837568d276cace34dbd32402378ef48f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPrefabsList:
+  - {fileID: 6402222025874225062, guid: e02c6e49dcfb7d144a5e8bf21d5860e0, type: 3}
+  maxObjects: 5
 --- !u!1 &898255251
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,6 +1140,7 @@ RectTransform:
   - {fileID: 204132757}
   - {fileID: 1214173027}
   - {fileID: 1052310125}
+  - {fileID: 1279765884}
   m_Father: {fileID: 5460921}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1237,6 +1256,84 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1214173026}
+  m_CullTransparentMesh: 0
+--- !u!1 &1279765883
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1279765884}
+  - component: {fileID: 1279765886}
+  - component: {fileID: 1279765885}
+  m_Layer: 5
+  m_Name: Text Food
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1279765884
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279765883}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1110286193}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 200.3, y: -275}
+  m_SizeDelta: {x: 326.61438, y: 62.325745}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1279765885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279765883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 874b77ce097ab6d4996a799466fac30f, type: 3}
+    m_FontSize: 21
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 0
+    m_MaxSize: 60
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Food:'
+--- !u!222 &1279765886
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279765883}
   m_CullTransparentMesh: 0
 --- !u!1 &1280951094
 GameObject:

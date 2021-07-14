@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace FMT
 {
@@ -11,6 +12,8 @@ public class EnemyPower : EntityPower
         base.PowerDepleted();
 
         EntityAwardedXP?.Invoke(powerMax);
+
+        Debug.Log($"{gameObject.name} awarded {powerMax} XP");
     }
 }
 }

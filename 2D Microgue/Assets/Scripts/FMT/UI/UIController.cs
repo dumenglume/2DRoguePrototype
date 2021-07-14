@@ -15,11 +15,13 @@ public class UIController : MonoBehaviour
     [SerializeField] Text textPower;
     [SerializeField] Text textXP;
     [SerializeField] Text textGold;
+    [SerializeField] Text textFood;
 
     Player player;
     EntityPower playerPower;
     PlayerXP playerXP;
     PlayerGold playerGold;
+    PlayerFood playerFood;
 
     void Awake()
     {
@@ -35,6 +37,7 @@ public class UIController : MonoBehaviour
         PlayerPower.PowerChanged     += UpdateTextPower;
         PlayerXP.PlayerXPChanged     += UpdateTextXP;
         PlayerGold.GoldAmountChanged += UpdateTextGold;
+        PlayerFood.FoodAmountChanged += UpdateTextFood;
     }
 
     void OnDisable()
@@ -43,6 +46,7 @@ public class UIController : MonoBehaviour
         PlayerPower.PowerChanged     -= UpdateTextPower;
         PlayerXP.PlayerXPChanged     -= UpdateTextXP;
         PlayerGold.GoldAmountChanged -= UpdateTextGold;
+        PlayerFood.FoodAmountChanged -= UpdateTextFood;
     }
 
     void GetPlayer(Player _player)
@@ -51,16 +55,20 @@ public class UIController : MonoBehaviour
         playerPower  = _player.EntityPower;
         playerXP     = _player.PlayerXP;
         playerGold   = _player.PlayerGold;
+        playerFood   = _player.PlayerFood;
 
         UpdateTextPower();
         UpdateTextXP();
         UpdateTextGold();
+        UpdateTextFood();
     }
 
     void UpdateTextPower() => textPower.text = $"Power: { playerPower.PowerCurrent.ToString() } / { playerPower.PowerMax.ToString() }";
 
-    void UpdateTextXP() => textXP.text = $"XP:    { playerXP.CurrentXP.ToString()} / {playerXP.NextLevel.ToString()}";
+    void UpdateTextXP() => textXP.text = $"XP:    { playerXP.CurrentXP.ToString()} / {playerXP.NextLevel.ToString() }";
 
     void UpdateTextGold() => textGold.text = $"Gold:  { playerGold.CurrentGold.ToString() }";
+
+    void UpdateTextFood() => textFood.text = $"Food: { playerFood.CurrentFood.ToString() }";
 }
 }

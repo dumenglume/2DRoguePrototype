@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 4789013935627178603}
   - component: {fileID: 2856249277787501875}
   - component: {fileID: -1967499665417533602}
+  - component: {fileID: -4244904218640272980}
   m_Layer: 10
   m_Name: FMTPlayer
   m_TagString: Player
@@ -311,3 +312,18 @@ MonoBehaviour:
   currentXP: 0
   nextLevel: 20
   xpRequirementMultiplier: 5
+--- !u!114 &-4244904218640272980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6402222025874225062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1a08c8d203241644ba8f83f66850f38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodCurrent: 80
+  foodMax: 80
+  foodReductionRate: -1

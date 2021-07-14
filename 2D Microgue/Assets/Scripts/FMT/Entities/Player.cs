@@ -16,6 +16,9 @@ public class Player : Entity
     protected PlayerGold playerGold;
     public PlayerGold PlayerGold => playerGold;
 
+    protected PlayerFood playerFood;
+    public PlayerFood PlayerFood => playerFood;
+
     PlayerInput playerInput;
     float inputX, inputY;
 
@@ -27,6 +30,7 @@ public class Player : Entity
         entityMovement = GetComponent<EntityMovement>();
         playerXP       = GetComponent<PlayerXP>();
         playerGold     = GetComponent<PlayerGold>();
+        playerFood     = GetComponent<PlayerFood>();
 
         PlayerSpawned?.Invoke(this);
     }
