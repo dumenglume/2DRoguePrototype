@@ -42,6 +42,8 @@ public class PlayerXP : MonoBehaviour
 
     public void ChangeXPAmount(int xpAmount) => CurrentXP += xpAmount;
 
+    public void SetNextXP(int xpAmount) => nextLevel = xpAmount;
+
     void LevelUp(int value)
     {
         int leftoverXP = (CurrentXP + value) - nextLevel;

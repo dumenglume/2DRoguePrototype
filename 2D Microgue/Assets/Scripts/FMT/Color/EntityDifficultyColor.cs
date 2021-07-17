@@ -15,13 +15,13 @@ public class EntityDifficultyColor : MonoBehaviour
     public Dictionary<DifficultyColor, Color> DifficultyColorDictionary => difficultyColorDictionary;
 
     SpriteRenderer spriteRenderer;
-    Entity thisEntity;
-    Entity player;
+    Enemy thisEntity;
+    Player player;
 
     void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        thisEntity     = GetComponent<Entity>();
+        thisEntity     = GetComponent<Enemy>();
     }
 
     void OnEnable()
@@ -63,8 +63,8 @@ public class EntityDifficultyColor : MonoBehaviour
     {
         if (player == null) return;
 
-        int playerPower     = player.EntityPower.PowerCurrent;
-        int thisEntityPower = thisEntity.EntityPower.PowerCurrent;
+        int playerPower     = player.PlayerPower.PowerCurrent;
+        int thisEntityPower = thisEntity.EnemyPower.PowerCurrent;
 
         if (thisEntityPower >= playerPower) { currentDifficultyColor = DifficultyColor.red; }
         else { currentDifficultyColor = DifficultyColor.green; }

@@ -8,7 +8,7 @@ namespace FMT
 public class PlayerMovement : EntityMovement
 {
     public static event Action<_Tile> OnMoveToTile;
-    public static event Action<Entity, Entity, Vector3> OnTileInteraction;
+    public static event Action<Player, Enemy, Vector3> OnTileInteraction;
     public static event Action OnMovementComplete;
 
     [SerializeField] Player player;
@@ -17,7 +17,7 @@ public class PlayerMovement : EntityMovement
 
     void Awake() => player = player ?? GetComponent<Player>();
 
-    void Start() { tileGrid = DungeonManager.Instance.tileGrid; Debug.Log(tileGrid.Length); }
+    void Start() { tileGrid = DungeonManager.Instance.tileGrid; }
 
     public override void AttemptToMove(int curX, int curY, Vector3 movementDirection, Action<int, int> CallbackNewPosition)
     {

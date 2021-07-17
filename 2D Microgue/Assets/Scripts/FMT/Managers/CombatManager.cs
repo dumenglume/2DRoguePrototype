@@ -9,8 +9,8 @@ public class CombatManager : MonoBehaviour
 {
     public static Action<float, float, float> ShakeCamera;
 
-    Entity playerEntity;
-    Entity enemyEntity;
+    Player playerEntity;
+    Enemy enemyEntity;
     Entity defendingEntity;
     int playerDamage;
     int enemyDamage;
@@ -29,14 +29,14 @@ public class CombatManager : MonoBehaviour
         Entity.EntityDied                -= EndCombat;
     }
 
-    public void CombatEncounter(Entity player, Entity enemy, Vector3 directionOfAttack)
+    public void CombatEncounter(Player player, Enemy enemy, Vector3 directionOfAttack)
     {
         playerEntity = player;
-        playerDamage = playerEntity.EntityPower.PowerCurrent;
+        playerDamage = playerEntity.PlayerPower.PowerCurrent;
         playerEntity.SetCombatState(true);
 
         enemyEntity = enemy;
-        enemyDamage = enemyEntity.EntityPower.PowerCurrent;
+        enemyDamage = enemyEntity.EnemyPower.PowerCurrent;
         enemyEntity.SetCombatState(true);
 
         direction = directionOfAttack;

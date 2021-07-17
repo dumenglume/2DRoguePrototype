@@ -15,6 +15,8 @@ namespace FMT
         [SerializeField] Vector2Int fogRevealBoundaryWidth = new Vector2Int(-1, 2);
         [SerializeField] Vector2Int fogRevealBoundaryHeight = new Vector2Int(-1, 2);
 
+        [SerializeField] bool refillEachTurn = false;
+
         Dungeon dungeonGenerator;
 
         void OnEnable() 
@@ -41,6 +43,8 @@ namespace FMT
 
         public void RevealTilesAtLocation(_Tile tile)
         {
+            if (refillEachTurn) { FloodfillFog(18, 12); }
+
             Vector3Int gridPosition = grid.WorldToCell(tile.worldPosition);
 
             for (int x = gridPosition.x + fogRevealBoundaryWidth.x; x < gridPosition.x + fogRevealBoundaryWidth.y; x++)

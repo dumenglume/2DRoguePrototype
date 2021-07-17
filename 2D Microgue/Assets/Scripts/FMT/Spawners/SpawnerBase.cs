@@ -27,7 +27,7 @@ public abstract class SpawnerBase : MonoBehaviour
         if (generationSpeed > 0.0f) { yield return new WaitForSeconds(generationSpeed); }
     }
 
-    public void ClearAllObjects() // TODO May need to change this into reverse for loop
+    public virtual void ClearAllObjects() // TODO May need to change this into reverse for loop
     {
         if (spawnedObjectsDictionary == null) { return; }
 

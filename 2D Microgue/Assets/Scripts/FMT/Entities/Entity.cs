@@ -13,11 +13,9 @@ public abstract class Entity : MonoBehaviour
     protected EntityCombat entityCombat;
     public EntityCombat EntityCombat => entityCombat;
 
-    protected EntityPower entityPower;
-    public EntityPower EntityPower => entityPower;
 
     [Header("Entity Settings")]
-    [SerializeField] string entityName;
+    [SerializeField] protected string entityName;
     public string EntityName => entityName;
     [SerializeField] protected EntityStats entityStatsReference;
 
@@ -27,21 +25,18 @@ public abstract class Entity : MonoBehaviour
     protected virtual void Awake() 
     {
         entityCombat = GetComponent<EntityCombat>();
-        entityPower  = GetComponent<EntityPower>();
     }
 
     protected virtual void Start()
     {
         SetEntityStats();
+        Debug.Log($"{entityName} Position: {(int)transform.position.x}, {(int)transform.position.y}");
         SetEntityPosition((int) transform.position.x, (int) transform.position.y);
     }
 
     protected virtual void SetEntityStats()
     {
         entityName = entityStatsReference.Name;
-        entityPower.BindEntity(this);
-        entityPower.SetPowerMax(entityStatsReference.PowerMax);
-        entityPower.SetPowerCurrent(entityStatsReference.PowerCurrent);
         entityCombat.SetBumpDuration(entityStatsReference.BumpDuration);
     }
 
@@ -51,7 +46,7 @@ public abstract class Entity : MonoBehaviour
         y = yPosition;
     }
 
-    public void TakeDamage(int damageAmount) => entityPower.ChangePowerCurrent(damageAmount);
+    public virtual void TakeDamage(int damageAmount) {}
 
     public void SetCombatState(bool combatState) => entityCombat.SetCombatState(combatState);
 

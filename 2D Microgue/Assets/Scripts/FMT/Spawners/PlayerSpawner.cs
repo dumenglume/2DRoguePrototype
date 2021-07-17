@@ -14,7 +14,7 @@ public class PlayerSpawner : SpawnerBase
 
         _Tile tileToSpawnOn   = spawnablePositions[startingPositionIndex];
 
-        GameObject thisObject = Instantiate(playerPrefab, tileToSpawnOn.worldPosition, Quaternion.identity); // TODO May need to move to own function
+        GameObject thisObject = Instantiate(playerPrefab, tileToSpawnOn.worldPosition, Quaternion.identity);
 
         AddObjectToDictionary(tileToSpawnOn, thisObject);
         RemoveSpawnablePosition(startingPositionIndex);

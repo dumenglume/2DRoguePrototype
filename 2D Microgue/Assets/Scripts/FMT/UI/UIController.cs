@@ -18,7 +18,7 @@ public class UIController : MonoBehaviour
     [SerializeField] Text textFood;
 
     Player player;
-    EntityPower playerPower;
+    PlayerPower playerPower;
     PlayerXP playerXP;
     PlayerGold playerGold;
     PlayerFood playerFood;
@@ -52,7 +52,7 @@ public class UIController : MonoBehaviour
     void GetPlayer(Player _player)
     {
         player       = _player;
-        playerPower  = _player.EntityPower;
+        playerPower  = _player.PlayerPower;
         playerXP     = _player.PlayerXP;
         playerGold   = _player.PlayerGold;
         playerFood   = _player.PlayerFood;

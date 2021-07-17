@@ -19,6 +19,9 @@ public class Player : Entity
     protected PlayerFood playerFood;
     public PlayerFood PlayerFood => playerFood;
 
+    protected PlayerPower playerPower;
+    public PlayerPower PlayerPower => playerPower;
+
     PlayerInput playerInput;
     float inputX, inputY;
 
@@ -31,6 +34,7 @@ public class Player : Entity
         playerXP       = GetComponent<PlayerXP>();
         playerGold     = GetComponent<PlayerGold>();
         playerFood     = GetComponent<PlayerFood>();
+        playerPower    = GetComponent<PlayerPower>();
 
         PlayerSpawned?.Invoke(this);
     }
@@ -38,29 +42,61 @@ public class Player : Entity
     void OnEnable() 
     {
         _ExitTile.ExitTileTriggered += SaveEntitySats;
-        Pickup.PickedUpItem         += entityPower.ChangePowerCurrent;
+        Pickup.PickedUpItem         += playerPower.ChangePowerCurrent;
     }
 
     void OnDisable()
     {
         _ExitTile.ExitTileTriggered -= SaveEntitySats;
-        Pickup.PickedUpItem         -= entityPower.ChangePowerCurrent;
+        Pickup.PickedUpItem         -= playerPower.ChangePowerCurrent;
     }
 
     protected override void SetEntityStats()
     {
         base.SetEntityStats();
 
-        entityPower.SetPowerMax(entityStatsReference.PowerMax);
+        playerPower.BindEntity(this);
+
+        GameManager gameManager = GameManager.Instance;
+
+        Debug.Log($"Game Manager: { gameManager }");
+
+        if (gameManager.gameHasStarted)
+        {
+            playerPower.SetPowerMax(gameManager.playerPowerMax);
+            playerPower.SetPowerCurrent(gameManager.playerPowerCurrent);
+            playerXP.SetXPAmount(gameManager.playerXPCurrent);
+            playerXP.SetNextXP(gameManager.playerXPNext);
+            playerGold.SetGoldAmount(gameManager.playerGold);
+            playerFood.SetFoodMaxAmount(gameManager.playerFoodMax);
+            playerFood.SetFoodAmount(gameManager.playerFoodCurrent);
+        }
+
+        else
+        {
+            playerPower.SetPowerMax(entityStatsReference.PowerMax);
+            playerPower.SetPowerCurrent(entityStatsReference.PowerCurrent);
+            playerXP.SetXPAmount(0);
+            playerXP.SetNextXP(25);
+            playerGold.SetGoldAmount(0);
+            playerFood.SetFoodMaxAmount(80);
+            playerFood.SetFoodAmount(80);
+        }
+
         entityMovement.SetMovementDuration(entityStatsReference.MovementDuration);
-        //playerGold.SetGoldAmount(0); // ! This may break gold by resetting with each floor
-        //playerXP.SetXPAmount(0); // ! This may break XP by resetting with each floor
     }
 
     protected void SaveEntitySats() // TODO Change this to saving to a different location so it doesn't overwrite scriptable object
     {
-        entityStatsReference.PowerMax     = entityPower.PowerMax;
-        entityStatsReference.PowerCurrent = entityPower.PowerCurrent;
+        GameManager gameManager = GameManager.Instance;
+
+        gameManager.SavePlayerPowerCurrent(playerPower.PowerCurrent);
+        gameManager.SavePlayerPowerMax(playerPower.PowerMax);
+        gameManager.SavePlayerXPCurrent(playerXP.CurrentXP);
+        gameManager.SavePlayerXPNext(playerXP.CurrentXP);
+        gameManager.SavePlayerGold(playerGold.CurrentGold);
+        gameManager.SavePlayerFoodCurrent(playerFood.CurrentFood);
+        gameManager.SavePlayerFoodMax(playerFood.FoodMax);
     }
 
     void Update()
@@ -82,5 +118,7 @@ public class Player : Entity
             entityMovement.AttemptToMove(x, y, Vector3Int.RoundToInt(inputDirection), SetEntityPosition);
         }
     }
+
+    public override void TakeDamage(int damageAmount) => playerPower.ChangePowerCurrent(damageAmount);
 }
 }

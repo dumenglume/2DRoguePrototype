@@ -682,6 +682,7 @@ MonoBehaviour:
   - {fileID: 5048386670051433188, guid: 182639e2e8efe2c4696e1795d67d1a1b, type: 3}
   - {fileID: 5048386670051433188, guid: 43bbe674a08e0164a9dcdd732c6b8c53, type: 3}
   maxObjects: 14
+  markTilesAsOccupied: 1
 --- !u!114 &871875354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -757,6 +758,7 @@ MonoBehaviour:
   tileFog: {fileID: 11400000, guid: 2b9dbd09d50060a498cd661907160fe8, type: 2}
   fogRevealBoundaryWidth: {x: -2, y: 3}
   fogRevealBoundaryHeight: {x: -2, y: 3}
+  refillEachTurn: 0
 --- !u!114 &871875358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -789,6 +791,7 @@ MonoBehaviour:
   tileFog: {fileID: 11400000, guid: 0c9423b858d8ac142909e6692c1ad5fd, type: 2}
   fogRevealBoundaryWidth: {x: -1, y: 2}
   fogRevealBoundaryHeight: {x: -1, y: 2}
+  refillEachTurn: 1
 --- !u!114 &871875360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -820,7 +823,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &898255252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1158,6 +1161,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1136568141}
+  - component: {fileID: 1136568142}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -1179,6 +1183,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1136568142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136568140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12f16878e049a534fb3995b72c45c7e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameState: 1
+  gameHasStarted: 0
+  playerPowerCurrent: 0
+  playerPowerMax: 0
+  playerXPCurrent: 0
+  playerXPNext: 0
+  playerGold: 0
+  playerFoodCurrent: 0
+  playerFoodMax: 0
+  currentFloor: 0
+  generationSpeed: 0
 --- !u!1 &1214173026
 GameObject:
   m_ObjectHideFlags: 0
@@ -1490,7 +1517,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1761511022}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 

@@ -30,6 +30,8 @@ public class PlayerFood : MonoBehaviour
         }
     }
 
+    public int FoodMax => foodMax;
+
     void OnEnable()
     {
         Food.PickedUpFood += ChangeFoodAmount;
@@ -51,5 +53,9 @@ public class PlayerFood : MonoBehaviour
     }
 
     void ReduceFood() => ChangeFoodAmount(foodReductionRate);
+
+    public void SetFoodMaxAmount(int foodMaxAmount) => foodMax = foodMaxAmount;
+    
+    public void ChangeFoodMaxAmount(int foodMaxAmount) => foodMax += foodMaxAmount;
 }
 }
