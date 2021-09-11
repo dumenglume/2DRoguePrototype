@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace GraphTest
+{
 public class EntitySpawner : MonoBehaviour
 {
     Dungeon dungeon;
@@ -140,4 +142,5 @@ public class EntitySpawner : MonoBehaviour
     {
 
     }
+}
 }

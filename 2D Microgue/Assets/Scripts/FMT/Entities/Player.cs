@@ -63,8 +63,8 @@ public class Player : Entity
 
         if (gameManager.gameHasStarted)
         {
-            playerPower.SetPowerMax(gameManager.playerPowerMax);
-            playerPower.SetPowerCurrent(gameManager.playerPowerCurrent);
+            //playerPower.SetPowerMax(gameManager.playerPowerMax);
+            //playerPower.SetPowerCurrent(gameManager.playerPowerCurrent);
             playerXP.SetXPAmount(gameManager.playerXPCurrent);
             playerXP.SetNextXP(gameManager.playerXPNext);
             playerGold.SetGoldAmount(gameManager.playerGold);
@@ -74,8 +74,8 @@ public class Player : Entity
 
         else
         {
-            playerPower.SetPowerMax(entityStatsReference.PowerMax);
-            playerPower.SetPowerCurrent(entityStatsReference.PowerCurrent);
+            //playerPower.SetPowerMax(entityStatsReference.PowerMax);
+            //playerPower.SetPowerCurrent(entityStatsReference.PowerCurrent);
             playerXP.SetXPAmount(0);
             playerXP.SetNextXP(25);
             playerGold.SetGoldAmount(0);
@@ -90,8 +90,8 @@ public class Player : Entity
     {
         GameManager gameManager = GameManager.Instance;
 
-        gameManager.SavePlayerPowerCurrent(playerPower.PowerCurrent);
-        gameManager.SavePlayerPowerMax(playerPower.PowerMax);
+        //gameManager.SavePlayerPowerCurrent(playerPower.PowerCurrent);
+        //gameManager.SavePlayerPowerMax(playerPower.PowerMax);
         gameManager.SavePlayerXPCurrent(playerXP.CurrentXP);
         gameManager.SavePlayerXPNext(playerXP.CurrentXP);
         gameManager.SavePlayerGold(playerGold.CurrentGold);

@@ -1,4 +1,6 @@
-﻿public static class DungeonBitmaskRooms
+﻿namespace GraphTest
+{
+public static class DungeonBitmaskRooms
 {
     /// <summary>
     /// Bitmask is based on clockwise N(1), E(2), S(4), W(8) assignment.
@@ -75,4 +77,5 @@
             }
         }
     }
+}
 }

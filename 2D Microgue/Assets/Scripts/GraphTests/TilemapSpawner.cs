@@ -2,6 +2,8 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+namespace GraphTest
+{
 public abstract class TilemapSpawner : MonoBehaviour
 {
     protected Dungeon dungeon;
@@ -27,4 +29,5 @@ public abstract class TilemapSpawner : MonoBehaviour
     protected virtual void RemoveTiles()
     {
     }
+}
 }

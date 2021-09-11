@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+namespace GraphTest
+{
 public class GameHandler : MonoBehaviour
 {
     [SerializeField] int playerPowerLevel = 1;
@@ -41,4 +43,5 @@ public class GameHandler : MonoBehaviour
         // Turn EntitySpawner into Singleton
         // Tell EntitySpawner to disable or remove a specific entity
     }
+}
 }

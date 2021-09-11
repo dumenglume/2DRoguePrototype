@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5306417295736296544}
   - component: {fileID: 7149184059776259446}
   - component: {fileID: 207543086639077670}
+  - component: {fileID: 7620844624920314493}
   m_Layer: 5
   m_Name: FloatingText
   m_TagString: Untagged
@@ -124,6 +125,23 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!114 &7620844624920314493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2906783353244911572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93159d57fef12b647aa55c60dfda5d5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerSpriteText: {fileID: 5306417295736296544}
+  powerReference:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
 --- !u!1 &6402222025874225062
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,6 +157,7 @@ GameObject:
   - component: {fileID: 4692769840295200140}
   - component: {fileID: -2234560878474434041}
   - component: {fileID: 4789013935627178603}
+  - component: {fileID: 7094271943060576435}
   - component: {fileID: 2856249277787501875}
   - component: {fileID: -1967499665417533602}
   - component: {fileID: -4244904218640272980}
@@ -255,7 +274,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3bffd2a14f9ce14e893be7f89cfea33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementDuration: 0
+  movementDuration:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 72bc45ac5f29e544896812559d66e0d6, type: 2}
   player: {fileID: 0}
 --- !u!114 &-2234560878474434041
 MonoBehaviour:
@@ -282,9 +304,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73d6b1947c8aa8a4fa9700039ed88938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerCurrent: 10
-  powerMax: 10
+  initialPowerCurrent:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  intitialPowerMax:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  powerCurrent: {fileID: 11400000, guid: dac5b50b5500d2142bdda609e2c13b36, type: 2}
+  powerMax: {fileID: 11400000, guid: 8a867f08c7e2cf641afed7212bc1e313, type: 2}
+--- !u!114 &7094271943060576435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6402222025874225062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93159d57fef12b647aa55c60dfda5d5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   powerSpriteText: {fileID: 5306417295736296544}
+  powerReference:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: dac5b50b5500d2142bdda609e2c13b36, type: 2}
 --- !u!114 &2856249277787501875
 MonoBehaviour:
   m_ObjectHideFlags: 0

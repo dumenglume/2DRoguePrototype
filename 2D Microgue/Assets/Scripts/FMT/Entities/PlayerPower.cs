@@ -1,11 +1,7 @@
-﻿using System;
-
-namespace FMT
+﻿namespace FMT
 {
 public class PlayerPower : EntityPower
 {
-    public static event Action PowerChanged;
-
     void OnEnable() 
     {
         PlayerXP.PlayerLeveledUp += RefillPower;
@@ -21,14 +17,7 @@ public class PlayerPower : EntityPower
     public void RefillPower(int maxPowerIncrease)
     {
         ChangePowerMax(maxPowerIncrease);
-        SetPowerCurrent(powerMax);
-    }
-
-    protected override void CheckPower()
-    {
-        base.CheckPower();
-
-        PowerChanged?.Invoke();
+        SetPowerCurrent(powerMax.Value);
     }
 }
 }

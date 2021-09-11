@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace GraphTest
+{
 public class Player : MonoBehaviour
 {
     // Input
@@ -43,4 +45,5 @@ public class Player : MonoBehaviour
             playerMovement.AttemptToMove(inputDirection);
         }
     }
+}
 }

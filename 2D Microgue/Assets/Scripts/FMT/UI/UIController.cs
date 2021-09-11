@@ -18,7 +18,8 @@ public class UIController : MonoBehaviour
     [SerializeField] Text textFood;
 
     Player player;
-    PlayerPower playerPower;
+    [SerializeField] IntReference playerPowerCurrent;
+    [SerializeField] IntReference playerPowerMax;
     PlayerXP playerXP;
     PlayerGold playerGold;
     PlayerFood playerFood;
@@ -52,7 +53,6 @@ public class UIController : MonoBehaviour
     void GetPlayer(Player _player)
     {
         player       = _player;
-        playerPower  = _player.PlayerPower;
         playerXP     = _player.PlayerXP;
         playerGold   = _player.PlayerGold;
         playerFood   = _player.PlayerFood;
@@ -63,7 +63,7 @@ public class UIController : MonoBehaviour
         UpdateTextFood();
     }
 
-    void UpdateTextPower() => textPower.text = $"Power: { playerPower.PowerCurrent.ToString() } / { playerPower.PowerMax.ToString() }";
+    void UpdateTextPower() => textPower.text = $"Power: { playerPowerCurrent.Value.ToString() } / { playerPowerMax.Value.ToString() }";
 
     void UpdateTextXP() => textXP.text = $"XP:    { playerXP.CurrentXP.ToString()} / {playerXP.NextLevel.ToString() }";
 

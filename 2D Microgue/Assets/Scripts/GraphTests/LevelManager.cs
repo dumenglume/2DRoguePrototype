@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace GraphTest
+{
 public class LevelManager : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -15,4 +17,5 @@ public class LevelManager : MonoBehaviour
     {
         
     }
+}
 }

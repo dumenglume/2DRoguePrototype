@@ -76,9 +76,6 @@ public class EntityDifficultyColor : MonoBehaviour
     {
         if (spriteRenderer == null) { throw new System.Exception("Sprite Renderer is null"); }
 
-        //Debug.Log($"Sprite Renderer: {spriteRenderer}");
-        //Debug.Log($"Difficulty Color: {difficultyColorDictionary[currentDifficultyColor]}");
-
         spriteRenderer.color = difficultyColorDictionary[currentDifficultyColor];
     }
 }

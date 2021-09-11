@@ -11,9 +11,9 @@ public class EnemyPower : EntityPower
     {
         base.PowerDepleted();
 
-        EntityAwardedXP?.Invoke(powerMax);
+        EntityAwardedXP?.Invoke(powerMax.Value);
 
-        Debug.Log($"{gameObject.name} awarded {powerMax} XP");
+        Debug.Log($"{gameObject.name} awarded {powerMax.Value} XP");
     }
 }
 }

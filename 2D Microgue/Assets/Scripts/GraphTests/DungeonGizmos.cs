@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+namespace GraphTest
+{
 public class DungeonGizmos : MonoBehaviour
 {
     Dungeon dungeon;
@@ -73,4 +75,5 @@ public class DungeonGizmos : MonoBehaviour
                 }
             }
         }
+}
 }

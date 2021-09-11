@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+namespace GraphTest
+{
 public class TilemapEnvironment : TilemapSpawner
 {
     [SerializeField] GameObject backgroundTilePrefab;
@@ -39,4 +41,5 @@ public class TilemapEnvironment : TilemapSpawner
             backgroundTiles.RemoveAt(i);
         }
     }
+}
 }

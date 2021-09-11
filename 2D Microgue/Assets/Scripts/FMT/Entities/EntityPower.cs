@@ -1,33 +1,37 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace FMT
 {
 public class EntityPower : MonoBehaviour
 {
-    [SerializeField] protected int powerCurrent = 10;
-    [SerializeField] protected int powerMax = 10;
+    public static event Action PowerChanged;
+
+    [SerializeField] protected IntReference initialPowerCurrent;
+    [SerializeField] protected IntReference intitialPowerMax;
+    [SerializeField] protected IntVariable powerCurrent;
+    [SerializeField] protected IntVariable powerMax;
     public int PowerCurrent 
     { 
-        get => powerCurrent;
+        get => powerCurrent.Value;
 
         set
         {
-            powerCurrent = value;
+            powerCurrent.Value = value;
             CheckPower();
         }
     }
     public int PowerMax 
     { 
-        get => powerMax;
+        get => powerMax.Value;
 
         set
         {
-            powerMax = value;
+            powerMax.Value = value;
             CheckPower();
         }
     }
 
-    [SerializeField] TextMesh powerSpriteText; // TODO Find a way to separate this into its own class
     Entity parentEntity; // TODO Find cleaner way of doing this
 
     public void BindEntity(Entity entity) => parentEntity = entity;
@@ -42,22 +46,22 @@ public class EntityPower : MonoBehaviour
 
     protected virtual void CheckPower()
     {
-        if (powerCurrent <= 0)
+        if (powerCurrent.Value <= 0)
         {
-            powerCurrent = 0;
+            powerCurrent.Value = 0;
             PowerDepleted();
         }
 
-        else if (powerCurrent > powerMax)
+        else if (powerCurrent.Value > powerMax.Value)
         {
-            powerCurrent = powerMax;
+            powerCurrent.Value = powerMax.Value;
         }
 
-        UpdatePowerSpriteText();
+        BroadcastPowerChanged();
     }
 
     protected virtual void PowerDepleted() => parentEntity.KillEntity();
 
-    void UpdatePowerSpriteText() => powerSpriteText.text = powerCurrent.ToString();
+    void BroadcastPowerChanged() => PowerChanged?.Invoke();
 }
 }

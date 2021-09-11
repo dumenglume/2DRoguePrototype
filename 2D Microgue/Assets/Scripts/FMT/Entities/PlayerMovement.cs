@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace FMT
@@ -11,11 +9,11 @@ public class PlayerMovement : EntityMovement
     public static event Action<Player, Enemy, Vector3> OnTileInteraction;
     public static event Action OnMovementComplete;
 
-    [SerializeField] Player player;
+    Player player;
 
     [SerializeField] _Tile[,] tileGrid;
 
-    void Awake() => player = player ?? GetComponent<Player>();
+    void Awake() => player = GetComponent<Player>();
 
     void Start() { tileGrid = DungeonManager.Instance.tileGrid; }
 
@@ -56,7 +54,7 @@ public class PlayerMovement : EntityMovement
         isMoving = true;
         BroadcastMovementStart(destinationTile);
 
-        LeanTween.move(gameObject, tweenDestination, movementDuration).setEaseInOutQuad().setOnComplete(() => 
+        LeanTween.move(gameObject, tweenDestination, movementDuration.Value).setEaseInOutQuad().setOnComplete(() => 
         {
             TriggerTile(destinationTile); // TODO Move to separate class?
             SetMovingToFalse();

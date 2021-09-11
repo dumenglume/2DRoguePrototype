@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+namespace GraphTest
+{
 public class DungeonGenerator : MonoBehaviour
 {
     [Header("Room Settings")]
@@ -319,4 +321,5 @@ public class DungeonGenerator : MonoBehaviour
     }
 
     # endregion
+}
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
+namespace GraphTest
+{
 public class TilemapFog : TilemapSpawner
 {
     Vector3 playerPosition;
@@ -94,4 +96,5 @@ public class TilemapFog : TilemapSpawner
     {
         fogTileRevealed?.Invoke();
     }
+}
 }

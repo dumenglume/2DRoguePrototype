@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace GraphTest
+{
 public class PlayerMovement : MonoBehaviour
 {
     public static Action<Room> roomBeingEntered;
@@ -121,4 +123,5 @@ public class PlayerMovement : MonoBehaviour
 
     void BroadcastRoomBeingEntered(Room _room) { roomBeingEntered?.Invoke(_room); }
     void BroadcastRoomBeingAttacked(Room _room) { /* roomBeingEntered?.Invoke(_room); */ }
+}
 }

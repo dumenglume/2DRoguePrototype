@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
+namespace GraphTest
+{
+
 # if UNITY_EDITOR
 using UnityEditor;
 # endif
@@ -52,4 +55,5 @@ public class CustomTile : Tile
         AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<CustomTile>(), path);
     }
     # endif
+}
 }

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+namespace GraphTest
+{
 public class DungeonGeneratorV2 : MonoBehaviour
 {
     [Header("Room Count Settings")]
@@ -255,4 +257,5 @@ public class DungeonGeneratorV2 : MonoBehaviour
         Debug.Log("Dungeon Complete");
         dungeonComplete?.Invoke();
     }
+}
 }

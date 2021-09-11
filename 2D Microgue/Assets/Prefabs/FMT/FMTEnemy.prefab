@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 8950698523048642723}
   - component: {fileID: 9220835648936536071}
   - component: {fileID: 3033222506991494127}
+  - component: {fileID: 7248814903011110612}
   - component: {fileID: -2234560878474434041}
   - component: {fileID: 757156133111253939}
   m_Layer: 10
@@ -238,9 +239,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea5a335f5d188474ca68710429e5842a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerCurrent: 10
-  powerMax: 10
+  initialPowerCurrent:
+    UseConstant: 1
+    ConstantValue: 10
+    Variable: {fileID: 0}
+  intitialPowerMax:
+    UseConstant: 1
+    ConstantValue: 10
+    Variable: {fileID: 0}
+  powerCurrent: {fileID: 11400000, guid: e274aaca12c580f42807a91c1533bfd4, type: 2}
+  powerMax: {fileID: 11400000, guid: 0191e143d5485fa408cd723878442ab9, type: 2}
+--- !u!114 &7248814903011110612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6402222025874225062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93159d57fef12b647aa55c60dfda5d5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   powerSpriteText: {fileID: 249872944465535923}
+  powerReference:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: e274aaca12c580f42807a91c1533bfd4, type: 2}
 --- !u!114 &-2234560878474434041
 MonoBehaviour:
   m_ObjectHideFlags: 0

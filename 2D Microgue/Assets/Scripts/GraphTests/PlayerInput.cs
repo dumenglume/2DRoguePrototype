@@ -1,5 +1,7 @@
 using UnityEngine;
 
+namespace GraphTest
+{
 public class PlayerInput : MonoBehaviour
 {
     float inputX, inputY;
@@ -27,4 +29,5 @@ public class PlayerInput : MonoBehaviour
         inputX = pressingRight ? 1f : pressingLeft ? -1f : 0f;
         inputY = pressingUp ? 1f : pressingDown ? -1f : 0f;
     }
+}
 }

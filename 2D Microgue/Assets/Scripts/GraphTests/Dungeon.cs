@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+namespace GraphTest
+{
 /// <summary>
 /// Graph based data structure containing a list of Rooms (nodes) and Corridors (edges).
 /// </summary>
@@ -18,7 +20,10 @@ public class Dungeon
         Corridors = new List<Corridor>();
     }
 }
+}
 
+namespace GraphTest
+{
 public class Room
 {
     public int roomID = -1;
@@ -38,7 +43,10 @@ public class Room
     public enum RoomOrientation { Null, N, E, S, W, NE, NS, NW, ES, EW, SW, NES, NEW, NSW, ESW, NESW }
     public RoomOrientation roomOrientation = RoomOrientation.Null;
 }
+}
 
+namespace GraphTest
+{
 public class Corridor
 {
     public enum CorridorOrientation { horizontal, vertical }
@@ -46,4 +54,5 @@ public class Corridor
 
     public Room fromRoom { get; set; }
     public Room toRoom { get; set; }
+}
 }

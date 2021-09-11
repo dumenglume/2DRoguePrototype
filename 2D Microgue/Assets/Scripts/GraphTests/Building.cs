@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+namespace GraphTest
+{
 public class Building : MonoBehaviour
 {
     [SerializeField] int enemyLevel = 0;
@@ -16,4 +18,5 @@ public class Building : MonoBehaviour
 
         textMesh.text = attackPower.ToString();
     }
+}
 }

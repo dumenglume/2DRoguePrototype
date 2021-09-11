@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+namespace GraphTest
+{
 public class BuildingSpawner : MonoBehaviour
 {
     [SerializeField] List<GameObject> buildingsToSpawn = new List<GameObject>();
@@ -37,4 +39,5 @@ public class BuildingSpawner : MonoBehaviour
 
         Debug.Log("All buildings spawned: " + buildingsToSpawn.Count);
     }
+}
 }

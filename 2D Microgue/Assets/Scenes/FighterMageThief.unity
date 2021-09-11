@@ -154,6 +154,14 @@ MonoBehaviour:
   textXP: {fileID: 1214173028}
   textGold: {fileID: 1052310126}
   textFood: {fileID: 1279765885}
+  playerPowerCurrent:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: dac5b50b5500d2142bdda609e2c13b36, type: 2}
+  playerPowerMax:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 8a867f08c7e2cf641afed7212bc1e313, type: 2}
 --- !u!4 &5460921
 Transform:
   m_ObjectHideFlags: 0
@@ -677,10 +685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectPrefabsList:
-  - {fileID: 5048386670051433188, guid: b6ba8958999f07148ab3b6b5c5bbd135, type: 3}
-  - {fileID: 5048386670051433188, guid: 9328d7c0397606b45a55b408ae38919a, type: 3}
-  - {fileID: 5048386670051433188, guid: 182639e2e8efe2c4696e1795d67d1a1b, type: 3}
-  - {fileID: 5048386670051433188, guid: 43bbe674a08e0164a9dcdd732c6b8c53, type: 3}
+  - {fileID: 6402222025874225062, guid: 57e0c793e3850fc4ab8a35b967abcdac, type: 3}
   maxObjects: 14
   markTilesAsOccupied: 1
 --- !u!114 &871875354

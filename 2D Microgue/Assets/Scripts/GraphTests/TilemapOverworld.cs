@@ -3,7 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Room = GraphTest.Room;
 
+namespace GraphTest
+{
 public class TilemapOverworld : MonoBehaviour
 {
     [SerializeField] Grid grid;
@@ -38,7 +41,7 @@ public class TilemapOverworld : MonoBehaviour
             Vector3Int gridPosition = grid.WorldToCell((Vector3Int) thisRoom.roomPosition);
 
             customTile.SetTileType((int)thisRoom.roomType);
-            customTile.SetSpriteOrientation(thisRoom.roomOrientation);
+            // customTile.SetSpriteOrientation(thisRoom.roomOrientation); // ! This is because for whatever reason using namespaces doesn't work with this
             tilemap.SetTile(gridPosition, customTile);
             customTileList.Add(customTile);
         }
@@ -59,4 +62,5 @@ public class TilemapOverworld : MonoBehaviour
         Room spawnRoom = dungeon.Rooms[0];
         allTilesSpawned?.Invoke(spawnRoom);
     }
+}
 }

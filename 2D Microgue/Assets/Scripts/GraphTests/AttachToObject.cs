@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+namespace GraphTest
+{
 public class AttachToObject : MonoBehaviour
 {
     void OnEnable()
@@ -25,4 +27,5 @@ public class AttachToObject : MonoBehaviour
     {
         transform.SetParent(null);
     }
+}
 }
